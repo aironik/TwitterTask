@@ -15,6 +15,7 @@
 		009B1A911DE49B9A00115E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 009B1A901DE49B9A00115E35 /* Assets.xcassets */; };
 		009B1A941DE49B9A00115E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009B1A921DE49B9A00115E35 /* LaunchScreen.storyboard */; };
 		009B1A9F1DE49B9A00115E35 /* TwitterTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */; };
+		009B1AAB1DE49C9000115E35 /* access_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 009B1AAA1DE49C9000115E35 /* access_token.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		009B1A9A1DE49B9A00115E35 /* TwitterTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterTaskTests.m; sourceTree = "<group>"; };
 		009B1AA01DE49B9A00115E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		009B1AAA1DE49C9000115E35 /* access_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = access_token.txt; path = TwitterTask/Resources/access_token.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,14 +88,15 @@
 			children = (
 				009B1A841DE49B9A00115E35 /* AppDelegate.h */,
 				009B1A851DE49B9A00115E35 /* AppDelegate.m */,
+				009B1A901DE49B9A00115E35 /* Assets.xcassets */,
 				009B1A871DE49B9A00115E35 /* FirstViewController.h */,
 				009B1A881DE49B9A00115E35 /* FirstViewController.m */,
+				009B1A951DE49B9A00115E35 /* Info.plist */,
+				009B1A921DE49B9A00115E35 /* LaunchScreen.storyboard */,
+				009B1A8D1DE49B9A00115E35 /* Main.storyboard */,
+				009B1AA91DE49C5400115E35 /* Resources */,
 				009B1A8A1DE49B9A00115E35 /* SecondViewController.h */,
 				009B1A8B1DE49B9A00115E35 /* SecondViewController.m */,
-				009B1A8D1DE49B9A00115E35 /* Main.storyboard */,
-				009B1A901DE49B9A00115E35 /* Assets.xcassets */,
-				009B1A921DE49B9A00115E35 /* LaunchScreen.storyboard */,
-				009B1A951DE49B9A00115E35 /* Info.plist */,
 				009B1A811DE49B9A00115E35 /* Supporting Files */,
 			);
 			path = TwitterTask;
@@ -114,6 +117,15 @@
 				009B1AA01DE49B9A00115E35 /* Info.plist */,
 			);
 			path = TwitterTaskTests;
+			sourceTree = "<group>";
+		};
+		009B1AA91DE49C5400115E35 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				009B1AAA1DE49C9000115E35 /* access_token.txt */,
+			);
+			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009B1AAB1DE49C9000115E35 /* access_token.txt in Resources */,
 				009B1A941DE49B9A00115E35 /* LaunchScreen.storyboard in Resources */,
 				009B1A911DE49B9A00115E35 /* Assets.xcassets in Resources */,
 				009B1A8F1DE49B9A00115E35 /* Main.storyboard in Resources */,
