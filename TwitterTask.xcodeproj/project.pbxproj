@@ -172,6 +172,7 @@
 		009B1A761DE49B9A00115E35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ATT;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = aironik;
 				TargetAttributes = {
@@ -418,6 +419,80 @@
 			};
 			name = Release;
 		};
+		00E74B191DE5C26A004CDBE0 /* UnitTests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = UnitTests;
+		};
+		00E74B1A1DE5C26A004CDBE0 /* UnitTests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 63QAM34C37;
+				INFOPLIST_FILE = TwitterTask/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.aironik.Tasks.TwitterTask;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = UnitTests;
+		};
+		00E74B1B1DE5C26A004CDBE0 /* UnitTests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 63QAM34C37;
+				INFOPLIST_FILE = TwitterTaskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.aironik.Tasks.TwitterTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TwitterTask.app/TwitterTask";
+			};
+			name = UnitTests;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -425,6 +500,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				009B1AA11DE49B9A00115E35 /* Debug */,
+				00E74B191DE5C26A004CDBE0 /* UnitTests */,
 				009B1AA21DE49B9A00115E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -434,17 +510,21 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				009B1AA41DE49B9A00115E35 /* Debug */,
+				00E74B1A1DE5C26A004CDBE0 /* UnitTests */,
 				009B1AA51DE49B9A00115E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		009B1AA61DE49B9A00115E35 /* Build configuration list for PBXNativeTarget "TwitterTaskTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				009B1AA71DE49B9A00115E35 /* Debug */,
+				00E74B1B1DE5C26A004CDBE0 /* UnitTests */,
 				009B1AA81DE49B9A00115E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
