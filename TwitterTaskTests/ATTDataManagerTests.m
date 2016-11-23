@@ -14,9 +14,15 @@
 
 #pragma mark - ATTDataManager
 
-@interface ATTDataManager(Tests)
+@interface ATTDataManager(DataManagerTests)
 
 @property (nonatomic, strong) ATTNetworkManager *networkManager;
+
+@end
+
+@interface ATTNetworkManager(DataManagerTests)
+
+@property (nonatomic, copy, readonly) NSString *accessToken;
 
 @end
 
@@ -59,6 +65,7 @@
     
     [dataManager start];
     XCTAssertNotNil(dataManager.networkManager, @"При запуске DataManager должен запустить сеть.");
+    XCTAssertGreaterThan([dataManager.networkManager.accessToken length], 0, @"Network Manager должен запуститься с access_token'ом.");
 
     [dataManager stop];
     XCTAssertNil(dataManager.networkManager, @"После остановки DataManager сеть должна остановиться.");

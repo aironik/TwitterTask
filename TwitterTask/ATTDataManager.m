@@ -42,11 +42,16 @@
 }
 
 - (void)start {
-    self.networkManager = [[ATTNetworkManager alloc] init];
+    self.networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self loadAccessToken]];
 }
 
 - (void)stop {
     self.networkManager = nil;
+}
+
+- (NSString *)loadAccessToken {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"access_token" ofType:@"txt"];
+    return [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:nil];
 }
 
 

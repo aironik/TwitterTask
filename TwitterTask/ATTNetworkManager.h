@@ -14,5 +14,11 @@
  */
 @interface ATTNetworkManager : NSObject
 
+/**
+ * @brief Инициализировать новый объект сетевого менеджера.
+ * @param accessToken токен для доступа к API.
+ */
+- (instancetype)initWithAccessToken:(NSString *)accessToken;
+
 
 @end
