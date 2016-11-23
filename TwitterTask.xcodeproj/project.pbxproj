@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0090B06E1DE49E5C0066439A /* ATTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090B06D1DE49E5C0066439A /* ATTDataManager.m */; };
+		0090B07A1DE4A2D10066439A /* ATTDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */; };
 		009B1A831DE49B9A00115E35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B1A821DE49B9A00115E35 /* main.m */; };
 		009B1A861DE49B9A00115E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B1A851DE49B9A00115E35 /* AppDelegate.m */; };
 		009B1A891DE49B9A00115E35 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B1A881DE49B9A00115E35 /* FirstViewController.m */; };
@@ -29,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0090B06C1DE49E5C0066439A /* ATTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTDataManager.h; sourceTree = "<group>"; };
+		0090B06D1DE49E5C0066439A /* ATTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManager.m; sourceTree = "<group>"; wrapsLines = 0; };
+		0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManagerTests.m; sourceTree = "<group>"; };
 		009B1A7E1DE49B9A00115E35 /* TwitterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009B1A821DE49B9A00115E35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		009B1A841DE49B9A00115E35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +91,9 @@
 		009B1A801DE49B9A00115E35 /* TwitterTask */ = {
 			isa = PBXGroup;
 			children = (
+				009B1AAC1DE49D2B00115E35 /* DataManager */,
+				009B1AA91DE49C5400115E35 /* Resources */,
+				009B1A811DE49B9A00115E35 /* Supporting Files */,
 				009B1A841DE49B9A00115E35 /* AppDelegate.h */,
 				009B1A851DE49B9A00115E35 /* AppDelegate.m */,
 				009B1A901DE49B9A00115E35 /* Assets.xcassets */,
@@ -94,10 +102,8 @@
 				009B1A951DE49B9A00115E35 /* Info.plist */,
 				009B1A921DE49B9A00115E35 /* LaunchScreen.storyboard */,
 				009B1A8D1DE49B9A00115E35 /* Main.storyboard */,
-				009B1AA91DE49C5400115E35 /* Resources */,
 				009B1A8A1DE49B9A00115E35 /* SecondViewController.h */,
 				009B1A8B1DE49B9A00115E35 /* SecondViewController.m */,
-				009B1A811DE49B9A00115E35 /* Supporting Files */,
 			);
 			path = TwitterTask;
 			sourceTree = "<group>";
@@ -113,8 +119,9 @@
 		009B1A9D1DE49B9A00115E35 /* TwitterTaskTests */ = {
 			isa = PBXGroup;
 			children = (
-				009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */,
+				0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */,
 				009B1AA01DE49B9A00115E35 /* Info.plist */,
+				009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */,
 			);
 			path = TwitterTaskTests;
 			sourceTree = "<group>";
@@ -126,6 +133,15 @@
 			);
 			name = Resources;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		009B1AAC1DE49D2B00115E35 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				0090B06C1DE49E5C0066439A /* ATTDataManager.h */,
+				0090B06D1DE49E5C0066439A /* ATTDataManager.m */,
+			);
+			name = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +252,7 @@
 			files = (
 				009B1A8C1DE49B9A00115E35 /* SecondViewController.m in Sources */,
 				009B1A861DE49B9A00115E35 /* AppDelegate.m in Sources */,
+				0090B06E1DE49E5C0066439A /* ATTDataManager.m in Sources */,
 				009B1A891DE49B9A00115E35 /* FirstViewController.m in Sources */,
 				009B1A831DE49B9A00115E35 /* main.m in Sources */,
 			);
@@ -246,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				009B1A9F1DE49B9A00115E35 /* TwitterTaskTests.m in Sources */,
+				0090B07A1DE4A2D10066439A /* ATTDataManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
