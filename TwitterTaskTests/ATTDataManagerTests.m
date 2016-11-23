@@ -9,11 +9,23 @@
 #import <XCTest/XCTest.h>
 
 #import "ATTDataManager.h"
+#import "ATTNetworkManager.h"
 
 
-@interface ATTDataManagerTests : XCTestCase
+#pragma mark - ATTDataManager
+
+@interface ATTDataManager(Tests)
+
+@property (nonatomic, strong) ATTNetworkManager *networkManager;
 
 @end
+
+
+#pragma mark - Tests
+
+@interface ATTDataManagerTests : XCTestCase
+@end
+
 
 @implementation ATTDataManagerTests
 
@@ -39,16 +51,17 @@
     XCTAssertFalse(dataManager.started, @"Остановленный DataManager должен быть !started");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
+- (void)testStartNetworkOnStartDataManager {
+    // Проверяем, что запускается сетеывой менеджер при старте DataManager.
+    
+    ATTDataManager *dataManager = [[ATTDataManager alloc] init];
+    XCTAssertNil(dataManager.networkManager, @"До запуска DataManager сеть не работает.");
+    
+    [dataManager start];
+    XCTAssertNotNil(dataManager.networkManager, @"При запуске DataManager должен запустить сеть.");
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    [dataManager stop];
+    XCTAssertNil(dataManager.networkManager, @"После остановки DataManager сеть должна остановиться.");
 }
 
 @end

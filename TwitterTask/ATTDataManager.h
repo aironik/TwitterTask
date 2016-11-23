@@ -24,7 +24,7 @@
 /**
  * @brief Флаг готовности к работе.
  */
-@property (nonatomic, readonly, getter=isStarted) BOOL started;
+@property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
 
 @end

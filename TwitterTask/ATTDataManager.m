@@ -8,9 +8,12 @@
 
 #import "ATTDataManager.h"
 
+#import "ATTNetworkManager.h"
+
+
 @interface ATTDataManager()
 
-@property (nonatomic, readwrite, getter=isStarted) BOOL started;
+@property (nonatomic, strong) ATTNetworkManager *networkManager;
 
 @end
 
@@ -20,6 +23,9 @@
 @implementation ATTDataManager
 
 
+@synthesize networkManager = _networkManager;
+
+
 - (instancetype)init {
     if (self = [super init]) {
         
@@ -27,12 +33,20 @@
     return self;
 }
 
+- (void)dealloc {
+    [self stop];
+}
+
+- (BOOL)isStarted {
+    return self.networkManager != nil;
+}
+
 - (void)start {
-    self.started = YES;
+    self.networkManager = [[ATTNetworkManager alloc] init];
 }
 
 - (void)stop {
-    self.started = NO;
+    self.networkManager = nil;
 }
 
 
