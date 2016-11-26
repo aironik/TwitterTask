@@ -20,6 +20,7 @@
 		009B1AAB1DE49C9000115E35 /* access_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 009B1AAA1DE49C9000115E35 /* access_token.txt */; };
 		00ADA13B1DE638D300D2ECD2 /* ATTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */; };
 		00ADA13D1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */; };
+		00ADA17F1DEA1EE800D2ECD2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,55 @@
 			proxyType = 1;
 			remoteGlobalIDString = 009B1A7D1DE49B9A00115E35;
 			remoteInfo = TwitterTask;
+		};
+		00ADA1711DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 030EF0A814632FD000B04273;
+			remoteInfo = OCMock;
+		};
+		00ADA1731DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03565A3118F0566E003AE91E;
+			remoteInfo = OCMockTests;
+		};
+		00ADA1751DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 030EF0DC14632FF700B04273;
+			remoteInfo = OCMockLib;
+		};
+		00ADA1771DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D31108AD1828DB8700737925;
+			remoteInfo = OCMockLibTests;
+		};
+		00ADA1791DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F0B950F11B0080BE00942C38;
+			remoteInfo = "OCMock iOS";
+		};
+		00ADA17B1DEA1EB400D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 817EB1621BD765130047E85A;
+			remoteInfo = "OCMock tvOS";
+		};
+		00ADA17D1DEA1EDC00D2ECD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 030EF0DB14632FF700B04273;
+			remoteInfo = OCMockLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,6 +105,7 @@
 		00ADA1391DE638D300D2ECD2 /* ATTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTNetworkManager.h; sourceTree = "<group>"; };
 		00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManager.m; sourceTree = "<group>"; };
 		00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManagerTests.m; sourceTree = "<group>"; };
+		00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = External/OCMock/Source/OCMock.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00ADA17F1DEA1EE800D2ECD2 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +176,7 @@
 		009B1A9D1DE49B9A00115E35 /* TwitterTaskTests */ = {
 			isa = PBXGroup;
 			children = (
+				00ADA1671DEA1E5500D2ECD2 /* External */,
 				0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */,
 				00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */,
 				009B1AA01DE49B9A00115E35 /* Info.plist */,
@@ -150,6 +203,27 @@
 				00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */,
 			);
 			name = DataManager;
+			sourceTree = "<group>";
+		};
+		00ADA1671DEA1E5500D2ECD2 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		00ADA1691DEA1EB400D2ECD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00ADA1721DEA1EB400D2ECD2 /* OCMock.framework */,
+				00ADA1741DEA1EB400D2ECD2 /* OCMockTests.xctest */,
+				00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */,
+				00ADA1781DEA1EB400D2ECD2 /* OCMockLibTests.xctest */,
+				00ADA17A1DEA1EB400D2ECD2 /* OCMock.framework */,
+				00ADA17C1DEA1EB400D2ECD2 /* OCMock.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +257,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				00ADA17E1DEA1EDC00D2ECD2 /* PBXTargetDependency */,
 				009B1A9C1DE49B9A00115E35 /* PBXTargetDependency */,
 			);
 			name = TwitterTaskTests;
@@ -224,6 +299,12 @@
 			mainGroup = 009B1A751DE49B9A00115E35;
 			productRefGroup = 009B1A7F1DE49B9A00115E35 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 00ADA1691DEA1EB400D2ECD2 /* Products */;
+					ProjectRef = 00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				009B1A7D1DE49B9A00115E35 /* TwitterTask */,
@@ -231,6 +312,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		00ADA1721DEA1EB400D2ECD2 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = 00ADA1711DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00ADA1741DEA1EB400D2ECD2 /* OCMockTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OCMockTests.xctest;
+			remoteRef = 00ADA1731DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOCMock.a;
+			remoteRef = 00ADA1751DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00ADA1781DEA1EB400D2ECD2 /* OCMockLibTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OCMockLibTests.xctest;
+			remoteRef = 00ADA1771DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00ADA17A1DEA1EB400D2ECD2 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = 00ADA1791DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00ADA17C1DEA1EB400D2ECD2 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = 00ADA17B1DEA1EB400D2ECD2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		009B1A7C1DE49B9A00115E35 /* Resources */ = {
@@ -284,6 +410,11 @@
 			isa = PBXTargetDependency;
 			target = 009B1A7D1DE49B9A00115E35 /* TwitterTask */;
 			targetProxy = 009B1A9B1DE49B9A00115E35 /* PBXContainerItemProxy */;
+		};
+		00ADA17E1DEA1EDC00D2ECD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OCMockLib;
+			targetProxy = 00ADA17D1DEA1EDC00D2ECD2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -347,9 +478,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/OCMock/Source";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -389,8 +522,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/OCMock/Source";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -488,9 +623,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/OCMock/Source";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

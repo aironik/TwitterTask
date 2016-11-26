@@ -1,0 +1,3 @@
+[submodule "External/OCMock"]
+	path = External/OCMock
+	url = git@github.com:erikdoe/ocmock.git
