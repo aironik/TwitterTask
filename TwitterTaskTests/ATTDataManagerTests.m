@@ -12,7 +12,7 @@
 #import "ATTNetworkManager.h"
 
 
-#pragma mark - ATTDataManager
+#pragma mark - Test Friends Categories
 
 @interface ATTDataManager(DataManagerTests)
 

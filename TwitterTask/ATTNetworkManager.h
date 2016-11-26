@@ -20,5 +20,12 @@
  */
 - (instancetype)initWithAccessToken:(NSString *)accessToken;
 
+/**
+ * @brief Выполнить поисковый запрос
+ * @details
+ *      cat access_token.txt | xargs -0 curl -v -X GET "https://api.twitter.com/1.1/search/tweets.json?q=mobile" -o search.json -H
+ */
+- (void)search:(NSString *)searchText;
+
 
 @end

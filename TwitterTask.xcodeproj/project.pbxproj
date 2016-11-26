@@ -84,7 +84,7 @@
 
 /* Begin PBXFileReference section */
 		0090B06C1DE49E5C0066439A /* ATTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTDataManager.h; sourceTree = "<group>"; };
-		0090B06D1DE49E5C0066439A /* ATTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManager.m; sourceTree = "<group>"; wrapsLines = 0; };
+		0090B06D1DE49E5C0066439A /* ATTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManager.m; sourceTree = "<group>"; };
 		0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManagerTests.m; sourceTree = "<group>"; };
 		009B1A7E1DE49B9A00115E35 /* TwitterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009B1A821DE49B9A00115E35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -135,6 +135,7 @@
 				009B1A7F1DE49B9A00115E35 /* Products */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		009B1A7F1DE49B9A00115E35 /* Products */ = {
 			isa = PBXGroup;

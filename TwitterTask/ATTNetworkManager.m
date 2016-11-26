@@ -9,6 +9,10 @@
 #import "ATTNetworkManager.h"
 
 
+static const NSTimeInterval kATTNetworkManagerTimeout = 30.;    // < Timeout сетевых запросов
+static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время между запросами до повторения.
+
+
 @interface ATTNetworkManager()
 
 /*
@@ -17,6 +21,16 @@
  *      Полностью сформированная строка (bearer с_токеном).
  */
 @property (nonatomic, copy, readonly) NSString *accessToken;
+
+/*
+ * @brief NEURLSession, через которую происходят сетевые запросы.
+ */
+@property (nonatomic, strong, readonly) NSURLSession *urlSession;
+
+/*
+ * @brief HTTP заголовки, которые добавляются во все сетевые запросы.
+ */
+@property (nonatomic, copy, readonly) NSDictionary *httpHeaders;
 
 @end
 
@@ -27,6 +41,8 @@
 
 
 @synthesize accessToken = _accessToken;
+@synthesize urlSession = _urlSession;
+@synthesize httpHeaders = _httpHeaders;
 
 
 - (instancetype)init {
@@ -38,8 +54,63 @@
     if (self = [super init]) {
         NSAssert([accessToken length] > 0, @"accessToken необходим для запросов и не может быть пустым");
         _accessToken = [accessToken copy];
+        
+        NSURLSessionConfiguration *urlSessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
+        urlSessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
+        _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
     }
     return self;
+}
+
+- (void)dealloc {
+    [_urlSession invalidateAndCancel];
+}
+
+- (NSDictionary *)httpHeaders {
+    if (_httpHeaders == nil) {
+        _httpHeaders = @{
+            @"User-Agent": @"TwitterTask",
+            @"Authorization": _accessToken,
+        };
+    }
+    return _httpHeaders;
+}
+
+- (void)search:(NSString *)searchText {
+    NSURLSessionDataTask *task = [self createTaskForSearch:searchText];
+    [task resume];
+}
+
+- (NSURLRequest *)createRequestForSearch:(NSString *)searchText {
+    // TODO: URL Encode searchText
+    NSString *encodedSearchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:
+                                   [NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *urlString = [@"https://api.twitter.com/1.1/search/tweets.json?q=" stringByAppendingString:encodedSearchText];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:kATTNetworkManagerTimeout];
+    request.allHTTPHeaderFields = self.httpHeaders;
+    request.timeoutInterval = kATTNetworkManagerTimeout;
+    
+    return request;
+}
+
+- (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText {
+    NSURLRequest *request = [self createRequestForSearch:searchText];
+
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request
+                                                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+    {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf handleSearchResult:data response:response error:error];
+    }];
+
+    return task;
+}
+
+- (void)handleSearchResult:(NSData *)data response:(NSURLResponse *)response error:(NSError *)error {
 }
 
 

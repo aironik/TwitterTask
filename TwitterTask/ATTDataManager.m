@@ -51,7 +51,8 @@
 
 - (NSString *)loadAccessToken {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"access_token" ofType:@"txt"];
-    return [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:nil];
+    NSString *fileContent = [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:nil];;
+    return [fileContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 
