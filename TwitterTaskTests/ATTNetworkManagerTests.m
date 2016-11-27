@@ -17,7 +17,7 @@
 
 @interface ATTNetworkManager(NetworkManagerTests)
 
-- (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText;
+- (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText completionHandler:(ATTNetworkManagerSearchHandler)completionHandler;
 
 @end
 
@@ -57,26 +57,33 @@
 }
 
 - (void)testOnSearchStartNetworkRequest {
-    id myNetworkManager = OCMPartialMock(self.networkManager);
+    ATTNetworkManager *myNetworkManager = OCMPartialMock(self.networkManager);
 
     NSURLSessionTask *searchTask = OCMClassMock([NSURLSessionTask class]);
     OCMStub([searchTask resume]);
-    OCMStub([myNetworkManager createTaskForSearch:self.searchText]).andReturn(searchTask);
+    void (^completionHandler)(NSArray *, NSError *) = [^(NSArray *searchResults, NSError *error) { } copy];
+    OCMStub([myNetworkManager createTaskForSearch:self.searchText completionHandler:completionHandler]).andReturn(searchTask);
 
-    [myNetworkManager search:self.searchText];
+    [myNetworkManager search:self.searchText completionHandler:completionHandler];
     
     OCMVerify([searchTask resume]);
 }
 
 - (void)testSearchNetworkData {
-    NSURLSessionTask *task = [self.networkManager createTaskForSearch:self.searchText];
+    NSURLSessionTask *task = [self.networkManager createTaskForSearch:self.searchText
+                                                    completionHandler:^(NSArray *searchResults, NSError *error) {}];
     
     XCTAssertEqualObjects(task.currentRequest.HTTPMethod, @"GET", @"Неправильный метод для запроса.");
     XCTAssertEqualObjects(task.currentRequest.allHTTPHeaderFields[@"Authorization"], self.accessTocken, @"Нет заголовка авторизации.");
 
     NSString *query = [task.currentRequest.URL query];
     NSString *searchQuery = [query stringByRemovingPercentEncoding];
-    XCTAssertTrue([searchQuery hasSuffix:self.searchText], @"Неправильный запрос");
+    XCTAssertNotEqual([searchQuery rangeOfString:self.searchText].location, NSNotFound, @"Неправильный запрос");
 }
+
+- (void)testOnSearchSuccessInvokeCompletionHandler {
+    // TODO: stub NSURLSessionConfiguration protocolClasses (NSURLProtocol)
+}
+
 
 @end

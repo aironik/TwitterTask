@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import "ATTDataManager.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.dataManager = [[ATTDataManager alloc] init];
+    [self.dataManager start];
+    
     return YES;
 }
 

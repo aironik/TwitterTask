@@ -11,6 +11,8 @@
 
 static const NSTimeInterval kATTNetworkManagerTimeout = 30.;    // < Timeout сетевых запросов
 static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время между запросами до повторения.
+static NSString *const kATTNetworkManagerStatusesKey = @"statuses";     // < Ключ массива
+static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая ошибка
 
 
 @interface ATTNetworkManager()
@@ -31,6 +33,11 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
  * @brief HTTP заголовки, которые добавляются во все сетевые запросы.
  */
 @property (nonatomic, copy, readonly) NSDictionary *httpHeaders;
+
+/*
+ * @brief Текущеий запрос, который выполняется.
+ */
+@property (nonatomic, strong) NSURLSessionTask *currentSearchTask;
 
 @end
 
@@ -77,10 +84,18 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
     return _httpHeaders;
 }
 
-- (void)search:(NSString *)searchText {
-    NSURLSessionDataTask *task = [self createTaskForSearch:searchText];
-    [task resume];
-    ATTLog(ATT_NETWORK_LOG, @"Search Request started");
+- (void)search:(NSString *)searchText completionHandler:(ATTNetworkManagerSearchHandler)completionHandler {
+    // Не организуем очередь. В каждый момент времени может выполняться только один запрос поиска,
+    // остальные игнорируются.
+    if (self.currentSearchTask == nil) {
+        self.currentSearchTask = [self createTaskForSearch:searchText completionHandler:completionHandler];
+        [self.currentSearchTask resume];
+        ATTLog(ATT_NETWORK_LOG, @"Search Request started.");
+    }
+    else {
+        ATTLog(ATT_NETWORK_LOG, @"Search Request executing. Ignore new one.");
+        [self handleSearchError:@"Search Request already executing." completionHandler:completionHandler];
+    }
 }
 
 - (NSURLRequest *)createRequestForSearch:(NSString *)searchText {
@@ -98,7 +113,7 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
     return request;
 }
 
-- (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText {
+- (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText completionHandler:(ATTNetworkManagerSearchHandler)completionHandler {
     NSURLRequest *request = [self createRequestForSearch:searchText];
 
     WEAK_SELF;
@@ -106,24 +121,49 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         STRONG_SELF;
-        [strongSelf handleSearchResult:data response:response error:error];
+        if (error != nil ||
+                ![response isKindOfClass:[NSHTTPURLResponse class]]
+                || [(NSHTTPURLResponse *)response statusCode] != 200)
+        {
+            [strongSelf handleSearchError:@"Search request returns error." completionHandler:completionHandler];
+        }
+        else {
+            [strongSelf handleSearchResult:data completionHandler:completionHandler];
+        }
+        strongSelf.currentSearchTask = nil;
     }];
 
     return task;
 }
 
-- (void)handleSearchResult:(NSData *)data response:(NSURLResponse *)response error:(NSError *)error {
-    // TODO: Error does't handle.
-    if (error != nil || ![response isKindOfClass:[NSHTTPURLResponse class]] || [(NSHTTPURLResponse*)response statusCode] != 200) {
-        // TODO: Handle Errors.
-        ATTLog(ATT_NETWORK_LOG, @"ERROR: Request finish with error.");
+- (void)handleSearchError:(NSString *)searchErrorString completionHandler:(ATTNetworkManagerSearchHandler)completionHandler {
+    // TODO: handle errors
+    ATTLog(ATT_NETWORK_LOG, @"Request error: %@", searchErrorString);
+    NSError *error = [NSError errorWithDomain:@"me.aironik.Tasks.TwitterTask.NetworkError" code:kATTNetworkManagerErrorCode userInfo:@{}];
+    completionHandler(nil, error);
+}
+
+- (void)handleSearchResult:data completionHandler:(ATTNetworkManagerSearchHandler)completionHandler {
+    ATTLog(ATT_NETWORK_LOG, @"Result: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if (![response isKindOfClass:[NSDictionary class]]) {
+        [self handleSearchError:@"Error parse search result." completionHandler:completionHandler];
     }
     else {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        ATTLog(ATT_NETWORK_LOG, @"Result: %@", jsonString);
-        
+        NSArray *statuses = response[kATTNetworkManagerStatusesKey];
+        if (![statuses isKindOfClass:[NSArray class]]) {
+            [self handleSearchError:@"Error parse search result." completionHandler:completionHandler];
+        }
+        else {
+            [self handleSearchResultWithStatuses:statuses completionHandler:completionHandler];
+        }
     }
+}
 
+- (void)handleSearchResultWithStatuses:(NSArray *)statuses  completionHandler:(ATTNetworkManagerSearchHandler)completionHandler {
+    ATTLog(ATT_NETWORK_LOG, @"Received %@ statuses", @([statuses count]));
+    completionHandler(statuses, nil);
 }
 
 

@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class ATTDataManager;
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) UIWindow *window;
+
+@property (nonatomic, strong) ATTDataManager *dataManager;
 
 
 @end

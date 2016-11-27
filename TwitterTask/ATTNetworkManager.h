@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *error);
+
 /**
  * @brief Класс, являющей центром сетевой активности.
  */
@@ -25,7 +27,6 @@
  * @details
  *      cat access_token.txt | xargs -0 curl -v -X GET "https://api.twitter.com/1.1/search/tweets.json?q=mobile" -o search.json -H
  */
-- (void)search:(NSString *)searchText;
-
+- (void)search:(NSString *)searchText completionHandler:(ATTNetworkManagerSearchHandler)completionHandler;
 
 @end
