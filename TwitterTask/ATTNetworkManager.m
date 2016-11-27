@@ -58,6 +58,7 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
         NSURLSessionConfiguration *urlSessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
         urlSessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
         _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
+        ATTLog(ATT_NETWORK_LOG, @"NSURLSession has started.");
     }
     return self;
 }
@@ -79,6 +80,7 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
 - (void)search:(NSString *)searchText {
     NSURLSessionDataTask *task = [self createTaskForSearch:searchText];
     [task resume];
+    ATTLog(ATT_NETWORK_LOG, @"Search Request started");
 }
 
 - (NSURLRequest *)createRequestForSearch:(NSString *)searchText {
@@ -99,11 +101,11 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
 - (NSURLSessionDataTask *)createTaskForSearch:(NSString *)searchText {
     NSURLRequest *request = [self createRequestForSearch:searchText];
 
-    __weak typeof(self) weakSelf = self;
+    WEAK_SELF;
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request
                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        STRONG_SELF;
         [strongSelf handleSearchResult:data response:response error:error];
     }];
 
@@ -111,6 +113,17 @@ static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время 
 }
 
 - (void)handleSearchResult:(NSData *)data response:(NSURLResponse *)response error:(NSError *)error {
+    // TODO: Error does't handle.
+    if (error != nil || ![response isKindOfClass:[NSHTTPURLResponse class]] || [(NSHTTPURLResponse*)response statusCode] != 200) {
+        // TODO: Handle Errors.
+        ATTLog(ATT_NETWORK_LOG, @"ERROR: Request finish with error.");
+    }
+    else {
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        ATTLog(ATT_NETWORK_LOG, @"Result: %@", jsonString);
+        
+    }
+
 }
 
 
