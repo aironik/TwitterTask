@@ -21,6 +21,7 @@
 		00ADA13B1DE638D300D2ECD2 /* ATTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */; };
 		00ADA13D1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */; };
 		00ADA17F1DEA1EE800D2ECD2 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */; };
+		00ADA19E1DEB958B00D2ECD2 /* ATTPersistenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA19D1DEB958B00D2ECD2 /* ATTPersistenceStorage.m */; };
 		559AA482C102D789165C267B /* libPods-TwitterTaskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */; };
 		ADBFDC9EEBAE366EA0CFFD69 /* libPods-TwitterTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB775D26DAA5F462DFC76942 /* libPods-TwitterTask.a */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,8 @@
 		00ADA1871DEADDEF00D2ECD2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		00ADA1971DEAE07B00D2ECD2 /* ATTLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATTLogger.h; path = ../ATTLogger.h; sourceTree = "<group>"; };
 		00ADA1981DEAE0A000D2ECD2 /* ATTDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTDefinitions.h; sourceTree = "<group>"; };
+		00ADA19C1DEB958B00D2ECD2 /* ATTPersistenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorage.h; sourceTree = "<group>"; };
+		00ADA19D1DEB958B00D2ECD2 /* ATTPersistenceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorage.m; sourceTree = "<group>"; };
 		41D14D024F7388B2E9F555CB /* Pods-TwitterTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTask/Pods-TwitterTask.release.xcconfig"; sourceTree = "<group>"; };
 		55F897C72877C9556A2572F6 /* Pods-TwitterTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTask/Pods-TwitterTask.debug.xcconfig"; sourceTree = "<group>"; };
 		567E0891A46004E9A4B64AF7 /* Pods-TwitterTask.unittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTask.unittests.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTask/Pods-TwitterTask.unittests.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				0090B06D1DE49E5C0066439A /* ATTDataManager.m */,
 				00ADA1391DE638D300D2ECD2 /* ATTNetworkManager.h */,
 				00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */,
+				00ADA19C1DEB958B00D2ECD2 /* ATTPersistenceStorage.h */,
+				00ADA19D1DEB958B00D2ECD2 /* ATTPersistenceStorage.m */,
 			);
 			name = DataManager;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				009B1A8C1DE49B9A00115E35 /* SecondViewController.m in Sources */,
+				00ADA19E1DEB958B00D2ECD2 /* ATTPersistenceStorage.m in Sources */,
 				009B1A861DE49B9A00115E35 /* AppDelegate.m in Sources */,
 				00ADA13B1DE638D300D2ECD2 /* ATTNetworkManager.m in Sources */,
 				0090B06E1DE49E5C0066439A /* ATTDataManager.m in Sources */,

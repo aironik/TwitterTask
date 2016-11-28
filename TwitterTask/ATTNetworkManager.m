@@ -42,7 +42,7 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
 @end
 
 
-#pragma merk - 
+#pragma mark - 
 
 @implementation ATTNetworkManager
 
@@ -62,16 +62,31 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
         NSAssert([accessToken length] > 0, @"accessToken необходим для запросов и не может быть пустым");
         _accessToken = [accessToken copy];
         
-        NSURLSessionConfiguration *urlSessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
-        urlSessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
-        _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
-        ATTLog(ATT_NETWORK_LOG, @"NSURLSession has started.");
     }
     return self;
 }
 
 - (void)dealloc {
+    [self stop];
+}
+
+- (void)start {
+    NSAssert(_urlSession == nil, @"Already started.");
+
+    NSURLSessionConfiguration *urlSessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
+    urlSessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
+    _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
+    ATTLog(ATT_NETWORK_LOG, @"NSURLSession has started.");
+}
+
+- (void)stop {
+    NSAssert(_urlSession != nil, @"No URLSession. Seems to be stopped.");
     [_urlSession invalidateAndCancel];
+    _urlSession = nil;
+}
+
+- (BOOL)isStarted {
+    return (_urlSession != nil);
 }
 
 - (NSDictionary *)httpHeaders {

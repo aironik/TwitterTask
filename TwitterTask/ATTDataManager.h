@@ -6,8 +6,6 @@
 //  Copyright © 2016 aironik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface ATTDataManager : NSObject
 
 

@@ -40,9 +40,11 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     self.networkManager = [[ATTNetworkManager alloc] initWithAccessToken:self.accessTocken];
+    [self.networkManager start];
 }
 
 - (void)tearDown {
+    [self.networkManager stop];
     self.networkManager = nil;
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];

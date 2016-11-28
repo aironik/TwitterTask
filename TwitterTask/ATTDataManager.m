@@ -9,11 +9,13 @@
 #import "ATTDataManager.h"
 
 #import "ATTNetworkManager.h"
+#import "ATTPersistenceStorage.h"
 
 
 @interface ATTDataManager()
 
-@property (nonatomic, strong) ATTNetworkManager *networkManager;
+@property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
+@property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 
 @end
 
@@ -24,6 +26,7 @@
 
 
 @synthesize networkManager = _networkManager;
+@synthesize persistenceStorage = _persistenceStorage;
 
 
 - (instancetype)init {
@@ -38,15 +41,23 @@
 }
 
 - (BOOL)isStarted {
-    return self.networkManager != nil;
+    return (_networkManager != nil && _persistenceStorage != nil);
 }
 
 - (void)start {
-    self.networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self loadAccessToken]];
+    _networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self loadAccessToken]];
+    _persistenceStorage = [[ATTPersistenceStorage alloc] init];
+    
+    [_networkManager start];
+    [_persistenceStorage start];
 }
 
 - (void)stop {
-    self.networkManager = nil;
+    [_persistenceStorage stop];
+    [_networkManager stop];
+
+    _persistenceStorage = nil;
+    _networkManager = nil;
 }
 
 - (NSString *)loadAccessToken {

@@ -6,9 +6,6 @@
 //  Copyright © 2016 aironik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-
 typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *error);
 
 /**
@@ -21,6 +18,21 @@ typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *e
  * @param accessToken токен для доступа к API.
  */
 - (instancetype)initWithAccessToken:(NSString *)accessToken;
+
+/**
+ * @brief Подготавливает окружение, стартует сессию...
+ */
+- (void)start;
+
+/**
+ * @brief Останавливает сетевое взаимодействие и освобождает ресурсы.
+ */
+- (void)stop;
+
+/**
+ * @brief Флаг готовности к работе.
+ */
+@property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
 /**
  * @brief Выполнить поисковый запрос

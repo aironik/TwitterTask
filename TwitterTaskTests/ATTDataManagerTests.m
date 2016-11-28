@@ -10,6 +10,7 @@
 
 #import "ATTDataManager.h"
 #import "ATTNetworkManager.h"
+#import "ATTPersistenceStorage.h"
 
 
 #pragma mark - Test Friends Categories
@@ -17,6 +18,7 @@
 @interface ATTDataManager(DataManagerTests)
 
 @property (nonatomic, strong) ATTNetworkManager *networkManager;
+@property (nonatomic, strong) ATTPersistenceStorage *persistenceStorage;
 
 @end
 
@@ -65,10 +67,27 @@
     
     [dataManager start];
     XCTAssertNotNil(dataManager.networkManager, @"При запуске DataManager должен запустить сеть.");
+    XCTAssertTrue(dataManager.networkManager.started, @"При запуске DataManager должен запустить сеть.");
     XCTAssertGreaterThan([dataManager.networkManager.accessToken length], 0, @"Network Manager должен запуститься с access_token'ом.");
 
     [dataManager stop];
+    XCTAssertFalse(dataManager.networkManager.started, @"После остановки DataManager должен остановить сеть.");
     XCTAssertNil(dataManager.networkManager, @"После остановки DataManager сеть должна остановиться.");
 }
+
+- (void)testStartStorageOnStartDataManager {
+    // Проверяем, что запускается хранилище данных при старте DataManager.
+    
+    ATTDataManager *dataManager = [[ATTDataManager alloc] init];
+    XCTAssertNil(dataManager.persistenceStorage, @"До запуска DataManager хранилище не работает.");
+    
+    [dataManager start];
+    XCTAssertNotNil(dataManager.persistenceStorage, @"При запуске DataManager должен запустить хранилище.");
+    XCTAssertTrue(dataManager.persistenceStorage.started, @"При запуске DataManager хранилище должно запуститься.");
+    
+    [dataManager stop];
+    XCTAssertNil(dataManager.persistenceStorage, @"После остановки DataManager хранилище должно остановиться.");
+}
+
 
 @end
