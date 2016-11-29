@@ -8,7 +8,7 @@
 
 #import "ATTPersistenceStorage.h"
 
-#import <FMDB/FMDB.h>
+#import <fmdb/FMDB.h>
 
 
 @interface ATTPersistenceStorage()
@@ -27,6 +27,11 @@
 @synthesize storagePath = _storagePath;
 @synthesize db = _db;
 
+
+- (instancetype)init {
+    NSAssert(NO, @"Для работы необходим storagePath. Для инициализации используйте -initWithStoragePath:.");
+    return nil;
+}
 - (instancetype)initWithStoragePath:(NSString *)storagePath {
     if (self = [super init]) {
         _storagePath = [storagePath copy];

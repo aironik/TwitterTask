@@ -53,7 +53,7 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
 
 
 - (instancetype)init {
-    NSAssert(NO, @"Для работы необходим accessToken. Для инициализации используйте -initWithAccessToken.");
+    NSAssert(NO, @"Для работы необходим accessToken. Для инициализации используйте -initWithAccessToken:.");
     return nil;
 }
 
@@ -61,7 +61,6 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
     if (self = [super init]) {
         NSAssert([accessToken length] > 0, @"accessToken необходим для запросов и не может быть пустым");
         _accessToken = [accessToken copy];
-        
     }
     return self;
 }

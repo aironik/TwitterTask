@@ -8,6 +8,11 @@
 
 @interface ATTPersistenceStorage : NSObject
 
+/**
+ * @brief Инициализировать постоянное хранилище.
+ * @param storagePath Полное имя файла, в котором сохраняются данные.
+ */
+- (instancetype)initWithStoragePath:(NSString *)storagePath;
 
 /**
  * @brief Подготовить все данные и запустить хранилище.

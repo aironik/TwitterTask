@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
 @property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
+@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSString *persistenceStoragePath;
 
 @end
 
@@ -27,11 +29,14 @@
 
 @synthesize networkManager = _networkManager;
 @synthesize persistenceStorage = _persistenceStorage;
+@synthesize accessToken = _accessToken;
+@synthesize persistenceStoragePath = _persistenceStoragePath;
 
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+        _accessToken = [self loadAccessToken];
+        _persistenceStoragePath = [self loadPersistenceStoragePath];
     }
     return self;
 }
@@ -45,8 +50,8 @@
 }
 
 - (void)start {
-    _networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self loadAccessToken]];
-    _persistenceStorage = [[ATTPersistenceStorage alloc] init];
+    _networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self accessToken]];
+    _persistenceStorage = [[ATTPersistenceStorage alloc] initWithStoragePath:self.persistenceStoragePath];
     
     [_networkManager start];
     [_persistenceStorage start];
@@ -64,6 +69,13 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"access_token" ofType:@"txt"];
     NSString *fileContent = [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:nil];;
     return [fileContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (NSString *)loadPersistenceStoragePath {
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [paths firstObject];
+    NSString *storagePath = [docPath stringByAppendingPathComponent:@"data/storage.db"];
+    return storagePath;
 }
 
 
