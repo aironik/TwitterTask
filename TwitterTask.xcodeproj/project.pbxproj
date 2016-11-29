@@ -16,11 +16,10 @@
 		009B1A8F1DE49B9A00115E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009B1A8D1DE49B9A00115E35 /* Main.storyboard */; };
 		009B1A911DE49B9A00115E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 009B1A901DE49B9A00115E35 /* Assets.xcassets */; };
 		009B1A941DE49B9A00115E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009B1A921DE49B9A00115E35 /* LaunchScreen.storyboard */; };
-		009B1A9F1DE49B9A00115E35 /* TwitterTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */; };
 		009B1AAB1DE49C9000115E35 /* access_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 009B1AAA1DE49C9000115E35 /* access_token.txt */; };
 		00ADA13B1DE638D300D2ECD2 /* ATTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13A1DE638D300D2ECD2 /* ATTNetworkManager.m */; };
 		00ADA13D1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */; };
-		00ADA17F1DEA1EE800D2ECD2 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */; };
+		00ADA17F1DEA1EE800D2ECD2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */; };
 		00ADA19E1DEB958B00D2ECD2 /* ATTPersistenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADA19D1DEB958B00D2ECD2 /* ATTPersistenceStorage.m */; };
 		559AA482C102D789165C267B /* libPods-TwitterTaskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */; };
 		ADBFDC9EEBAE366EA0CFFD69 /* libPods-TwitterTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB775D26DAA5F462DFC76942 /* libPods-TwitterTask.a */; };
@@ -102,7 +101,6 @@
 		009B1A931DE49B9A00115E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		009B1A951DE49B9A00115E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		009B1A9A1DE49B9A00115E35 /* TwitterTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterTaskTests.m; sourceTree = "<group>"; };
 		009B1AA01DE49B9A00115E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		009B1AAA1DE49C9000115E35 /* access_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = access_token.txt; path = TwitterTask/Resources/access_token.txt; sourceTree = "<group>"; };
 		00ADA1391DE638D300D2ECD2 /* ATTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTNetworkManager.h; sourceTree = "<group>"; };
@@ -137,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00ADA17F1DEA1EE800D2ECD2 /* ReferenceProxy in Frameworks */,
+				00ADA17F1DEA1EE800D2ECD2 /* libOCMock.a in Frameworks */,
 				559AA482C102D789165C267B /* libPods-TwitterTaskTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +202,6 @@
 				0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */,
 				00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */,
 				009B1AA01DE49B9A00115E35 /* Info.plist */,
-				009B1A9E1DE49B9A00115E35 /* TwitterTaskTests.m */,
 			);
 			path = TwitterTaskTests;
 			sourceTree = "<group>";
@@ -545,7 +542,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009B1A9F1DE49B9A00115E35 /* TwitterTaskTests.m in Sources */,
 				00ADA13D1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m in Sources */,
 				0090B07A1DE4A2D10066439A /* ATTDataManagerTests.m in Sources */,
 			);
