@@ -22,7 +22,10 @@
 		559AA482C102D789165C267B /* libPods-TwitterTaskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */; };
 		ADBFDC9EEBAE366EA0CFFD69 /* libPods-TwitterTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB775D26DAA5F462DFC76942 /* libPods-TwitterTask.a */; };
 		C4E3E16AEEB92FA49C225AEF /* ATTPersistenceStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EE258AF56A7BF0A3CFD4 /* ATTPersistenceStorageTests.m */; };
+		C4E3E1C23C8EA24C62B1E0C4 /* ATTStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EF225858B81B60A9353A /* ATTStatusModel.m */; };
 		C4E3E5CEB6EE055BA0A818AC /* ATTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */; };
+		C4E3EB56C98331B125DB4D02 /* ATTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E32036C583D0AB1754EE /* ATTUserModel.m */; };
+		C4E3EBC4FCD4D27903263314 /* ATTEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */; };
 		C4E3EC79DA3AC9EB389342B7 /* ATTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E0061A3E10F0546B37F9 /* ATTDataManager.m */; };
 		C4E3ED89B4E83CC7BCFDCBDE /* ATTPersistenceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */; };
 		C4E3EE896B92E08A57D686B6 /* ATTStatusTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */; };
@@ -115,15 +118,22 @@
 		B10E61DF9F1C203BFE204C0E /* Pods-TwitterTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTaskTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTaskTests/Pods-TwitterTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TwitterTaskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E3E0061A3E10F0546B37F9 /* ATTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManager.m; sourceTree = "<group>"; };
+		C4E3E1252D374CB9DEAEB74F /* ATTStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusModel.h; sourceTree = "<group>"; };
 		C4E3E1EA5497676B96CE1FA9 /* ATTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTNetworkManager.h; sourceTree = "<group>"; };
 		C4E3E2EED3A25DE6440CA2AE /* ATTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTDataManager.h; sourceTree = "<group>"; };
 		C4E3E2FAFA9E929B595DCA4F /* ATTStatusTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusTestsHelper.h; sourceTree = "<group>"; };
+		C4E3E32036C583D0AB1754EE /* ATTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTUserModel.m; sourceTree = "<group>"; };
 		C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTStatusTestsHelper.m; sourceTree = "<group>"; };
 		C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManager.m; sourceTree = "<group>"; };
+		C4E3E48ACD6745C783815100 /* ATTEntityModel+ATTProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATTEntityModel+ATTProtected.h"; sourceTree = "<group>"; };
 		C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorage.m; sourceTree = "<group>"; };
+		C4E3E7FA083E46FC8A7DBA1D /* ATTEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTEntityModel.h; sourceTree = "<group>"; };
 		C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorage.h; sourceTree = "<group>"; };
 		C4E3ECC03039FF6C02AA210E /* ATTPersistenceStorageTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorageTestsHelper.h; sourceTree = "<group>"; };
+		C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTEntityModel.m; sourceTree = "<group>"; };
 		C4E3EE258AF56A7BF0A3CFD4 /* ATTPersistenceStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorageTests.m; sourceTree = "<group>"; };
+		C4E3EEB21D17D81D267779BB /* ATTUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTUserModel.h; sourceTree = "<group>"; };
+		C4E3EF225858B81B60A9353A /* ATTStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTStatusModel.m; sourceTree = "<group>"; };
 		C4E3EFF6CAD5A4563E1323AB /* ATTPersistenceStorageTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorageTestsHelper.m; sourceTree = "<group>"; };
 		CB775D26DAA5F462DFC76942 /* libPods-TwitterTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TwitterTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F5DD1EF28D5EC5F0A4FF14 /* Pods-TwitterTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTaskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTaskTests/Pods-TwitterTaskTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +269,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C4E3E1F22114E27E4F37E547 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3EF225858B81B60A9353A /* ATTStatusModel.m */,
+				C4E3E1252D374CB9DEAEB74F /* ATTStatusModel.h */,
+				C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */,
+				C4E3E7FA083E46FC8A7DBA1D /* ATTEntityModel.h */,
+				C4E3E32036C583D0AB1754EE /* ATTUserModel.m */,
+				C4E3EEB21D17D81D267779BB /* ATTUserModel.h */,
+				C4E3E48ACD6745C783815100 /* ATTEntityModel+ATTProtected.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C4E3E20488F8DBD9FC90CAB5 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +292,7 @@
 				C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */,
 				C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */,
 				C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */,
+				C4E3E1F22114E27E4F37E547 /* Models */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -556,6 +581,9 @@
 				C4E3EC79DA3AC9EB389342B7 /* ATTDataManager.m in Sources */,
 				C4E3E5CEB6EE055BA0A818AC /* ATTNetworkManager.m in Sources */,
 				C4E3ED89B4E83CC7BCFDCBDE /* ATTPersistenceStorage.m in Sources */,
+				C4E3E1C23C8EA24C62B1E0C4 /* ATTStatusModel.m in Sources */,
+				C4E3EBC4FCD4D27903263314 /* ATTEntityModel.m in Sources */,
+				C4E3EB56C98331B125DB4D02 /* ATTUserModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,8 @@
 
 #import <fmdb/FMDB.h>
 
+#import "ATTStatusModel.h"
+
 
 @interface ATTPersistenceStorage()
 
@@ -63,6 +65,14 @@
     NSAssert(_db != nil, @"Database is closed.");
     [_db close];
     _db = nil;
+}
+
+- (void)addSearchStatusesDicts:(NSArray<NSDictionary *> *)statuses {
+
+}
+
+- (NSArray<ATTStatusModel *> *)loadSearchStatuses {
+    return @[ ];
 }
 
 @end
