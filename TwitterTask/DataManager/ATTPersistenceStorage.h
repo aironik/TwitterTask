@@ -43,7 +43,7 @@
  * @brief Добавить поисковый результат в хранилище.
  * @param statuses Массив NSDictionary, десереализованный из JSON.
  */
-- (void)addSearchStatusesDicts:(NSArray<NSDictionary *> *)statuses;
+- (void)addSearchStatusesJson:(NSArray<NSDictionary *> *)statuses;
 
 
 
