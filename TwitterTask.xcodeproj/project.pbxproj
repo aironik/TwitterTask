@@ -656,6 +656,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/libextobjc/extobjc";
 			};
 			name = Debug;
 		};
@@ -701,6 +702,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/libextobjc/extobjc";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -810,6 +812,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/External/libextobjc/extobjc";
 			};
 			name = UnitTests;
 		};
