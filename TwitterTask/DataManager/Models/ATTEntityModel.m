@@ -27,6 +27,32 @@
 @synthesize jsonMap = _jsonMap;
 
 
++ (instancetype)createFromJson:(NSDictionary *)json {
+    ATTEntityModel *result = [[[self class] alloc] init];
+    [result fillFromJson:json];
+    return result;
+}
+
+- (void)fillFromJson:(NSDictionary *)json {
+    // TODO: обрабатывать ошибки формата и парсинга.
+    NSDictionary<NSString *, NSString *> *jsonMap = self.jsonMap;
+    for (NSString *key in jsonMap) {
+        NSString *keypath = jsonMap[key];
+        NSObject *value = json[key];
+        NSAssert1([self respondsToSelector:NSSelectorFromString(keypath)], @"No property '%@' in model.", keypath);
+
+        if ([value isKindOfClass:[NSString class]]) {
+            [self setValue:value forKeyPath:keypath];
+        }
+        else if ([value isKindOfClass:[NSDictionary class]]) {
+            // TODO: WRITE ME
+        }
+        else {
+            NSAssert2(NO, @"Unknown behaviour for key %@ with value class %@", key, NSStringFromClass([value class]));
+        }
+    }
+}
+
 - (NSDictionary<NSString *, NSString *> *)jsonMap {
     if (_jsonMap == nil) {
         _jsonMap = [[[self class] createJsonMap] copy];

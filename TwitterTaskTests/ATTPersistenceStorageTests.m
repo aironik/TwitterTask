@@ -11,7 +11,9 @@
 
 #import "ATTPersistenceStorage.h"
 #import "ATTPersistenceStorageTestsHelper.h"
+#import "ATTStatusModel.h"
 #import "ATTStatusTestsHelper.h"
+#import "ATTUserModel.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -55,6 +57,25 @@
     NSArray *loadedSearchStatuses = [persistenceStorage loadSearchStatuses];
     XCTAssertNotNil(loadedSearchStatuses, @"Загруженные статусы всегда должны быть массивом");
     XCTAssertEqual([loadedSearchStatuses count], 0, @"В новом хранилище не должно быть данных");
+}
+
+
+- (void)testCreateUserModelFromJson {
+    NSDictionary *json = [ATTStatusTestsHelper createJsonStatusWithId:@"12345678901234567890"
+                                                               userId:@"12345678901234567890"
+                                                      profileImageUrl:@"https://pbs.twimg.com/profile_images/674920599102349312/zXwTYz-T_normal.jpg"];
+    ATTUserModel *model = [ATTUserModel createFromJson:json[@"user"]];
+    XCTAssertTrue([ATTStatusTestsHelper isEqualUser:model toJson:json[@"user"]],
+            @"Загруженный объект не равер сохранённому.");
+}
+
+- (void)testCreateStatusModelFromJson {
+    NSDictionary *json = [ATTStatusTestsHelper createJsonStatusWithId:@"12345678901234567890"
+                                                               userId:@"12345678901234567890"
+                                                      profileImageUrl:@"https://pbs.twimg.com/profile_images/674920599102349312/zXwTYz-T_normal.jpg"];
+    ATTStatusModel *model = [ATTStatusModel createFromJson:json];
+    XCTAssertTrue([ATTStatusTestsHelper isEqualStatus:model toJson:json],
+            @"Загруженный объект не равер сохранённому.");
 }
 
 - (void)testLoadSaved {

@@ -7,6 +7,7 @@
 //
 
 @class ATTStatusModel;
+@class ATTUserModel;
 
 
 /**
@@ -26,7 +27,11 @@
 /**
  * @brief Сравнить статус-модель с JSON-статусом.
  */
-+ (BOOL)isEqualStatus:(ATTStatusModel *)statusModel toJson:(NSDictionary *)statusJson;
++ (BOOL)isEqualStatus:(ATTStatusModel *)model toJson:(NSDictionary *)json;
 
+/**
+ * @brief Сравнить модель User с JSON-статусом.
+ */
++ (BOOL)isEqualUser:(ATTUserModel *)model toJson:(NSDictionary *)json;
 
 @end

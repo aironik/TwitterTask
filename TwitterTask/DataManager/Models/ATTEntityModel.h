@@ -14,6 +14,13 @@
 
 
 /**
+ * @brief Создать объект модели из десериализованного JSON.
+ * @param json - NSDictionary, десереализованный из серверного JSON.
+ * @return Новый, заполненный в соответствии с начальными данными, объект модели.
+ */
++ (instancetype)createFromJson:(NSDictionary *)json;
+
+/**
  * @brief Уникальный идентификатор сущности
  * @details JSON id_str
  */
