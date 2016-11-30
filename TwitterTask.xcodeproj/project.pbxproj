@@ -185,6 +185,7 @@
 		009B1A801DE49B9A00115E35 /* TwitterTask */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3E20488F8DBD9FC90CAB5 /* DataManager */,
 				009B1AA91DE49C5400115E35 /* Resources */,
 				009B1A811DE49B9A00115E35 /* Supporting Files */,
 				009B1A841DE49B9A00115E35 /* AppDelegate.h */,
@@ -197,7 +198,6 @@
 				009B1A8D1DE49B9A00115E35 /* Main.storyboard */,
 				009B1A8A1DE49B9A00115E35 /* SecondViewController.h */,
 				009B1A8B1DE49B9A00115E35 /* SecondViewController.m */,
-				C4E3E20488F8DBD9FC90CAB5 /* DataManager */,
 			);
 			path = TwitterTask;
 			sourceTree = "<group>";
@@ -220,8 +220,8 @@
 				C4E3E4786D4DB2E2093C5A7D /* Helpers */,
 				0090B0791DE4A2D10066439A /* ATTDataManagerTests.m */,
 				00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */,
-				009B1AA01DE49B9A00115E35 /* Info.plist */,
 				C4E3EE258AF56A7BF0A3CFD4 /* ATTPersistenceStorageTests.m */,
+				009B1AA01DE49B9A00115E35 /* Info.plist */,
 			);
 			path = TwitterTaskTests;
 			sourceTree = "<group>";
@@ -272,13 +272,13 @@
 		C4E3E1F22114E27E4F37E547 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C4E3EF225858B81B60A9353A /* ATTStatusModel.m */,
-				C4E3E1252D374CB9DEAEB74F /* ATTStatusModel.h */,
-				C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */,
 				C4E3E7FA083E46FC8A7DBA1D /* ATTEntityModel.h */,
-				C4E3E32036C583D0AB1754EE /* ATTUserModel.m */,
-				C4E3EEB21D17D81D267779BB /* ATTUserModel.h */,
+				C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */,
 				C4E3E48ACD6745C783815100 /* ATTEntityModel+ATTProtected.h */,
+				C4E3E1252D374CB9DEAEB74F /* ATTStatusModel.h */,
+				C4E3EF225858B81B60A9353A /* ATTStatusModel.m */,
+				C4E3EEB21D17D81D267779BB /* ATTUserModel.h */,
+				C4E3E32036C583D0AB1754EE /* ATTUserModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,13 +286,13 @@
 		C4E3E20488F8DBD9FC90CAB5 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3E1F22114E27E4F37E547 /* Models */,
 				C4E3E2EED3A25DE6440CA2AE /* ATTDataManager.h */,
 				C4E3E0061A3E10F0546B37F9 /* ATTDataManager.m */,
 				C4E3E1EA5497676B96CE1FA9 /* ATTNetworkManager.h */,
 				C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */,
 				C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */,
 				C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */,
-				C4E3E1F22114E27E4F37E547 /* Models */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -302,8 +302,8 @@
 			children = (
 				C4E3ECC03039FF6C02AA210E /* ATTPersistenceStorageTestsHelper.h */,
 				C4E3EFF6CAD5A4563E1323AB /* ATTPersistenceStorageTestsHelper.m */,
-				C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */,
 				C4E3E2FAFA9E929B595DCA4F /* ATTStatusTestsHelper.h */,
+				C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
