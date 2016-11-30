@@ -79,7 +79,7 @@
 }
 
 - (void)testLoadSaved {
-    ATTPersistenceStorage *persistenceStorage = [ATTPersistenceStorageTestsHelper createWithMemoryStorage];
+    ATTPersistenceStorage *persistenceStorage = [ATTPersistenceStorageTestsHelper createWithNewTemporaryStorage];
 
     NSDictionary *json1 = [ATTStatusTestsHelper createJsonStatusWithId:@"12345678901234567890"
                                                                 userId:@"12345678901234567890"
@@ -96,7 +96,7 @@
             json2,
             json3
     ];
-    [persistenceStorage addSearchStatusesDicts:jsonStatuses];
+    [persistenceStorage addSearchStatusesJson:jsonStatuses];
 
     NSArray<ATTStatusModel *> *loadedSearchStatuses = [persistenceStorage loadSearchStatuses];
     XCTAssertEqual([loadedSearchStatuses count], [jsonStatuses count], @"Загружено должно быть столько же, сколько сохранялось.");

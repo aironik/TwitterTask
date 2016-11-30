@@ -36,6 +36,8 @@
 }
 
 - (BOOL)fillFromJson:(NSDictionary *)json {
+    // Для простоты не учитываем дублирований записей. Всегда создаём новую копию.
+
     BOOL result = YES;
     // TODO: обрабатывать ошибки формата и парсинга.
     NSDictionary<NSString *, NSString *> *jsonMap = self.jsonMap;

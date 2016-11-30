@@ -18,7 +18,14 @@
 #pragma mark - Log Features/Tags Definitions
 
 #define ATT_NETWORK_LOG 1
+#define ATT_STORAGE_LOG 1
 
+
+#if (ATT_STORAGE_LOG && LOG_ENABLED)
+    #define ATT_TRACE_SQLITE 1
+#else //  (ATT_STORAGE_LOG && LOG_ENABLED)
+    #define ATT_TRACE_SQLITE 0
+#endif // (ATT_STORAGE_LOG && LOG_ENABLED)
 
 #pragma mark - Log Implementation
 

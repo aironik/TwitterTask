@@ -11,6 +11,7 @@
 #import <fmdb/FMDB.h>
 
 #import "ATTStatusModel.h"
+#import "ATTUserModel.h"
 
 
 @interface ATTPersistenceStorage()
@@ -76,11 +77,12 @@
                                                    attributes:nil
                                                         error:nil];
     }
-    FMDatabaseQueue *dbQueue = [FMDatabaseQueue databaseQueueWithPath:self.storagePath];
+    ATTLog(ATT_STORAGE_LOG, @"Open database %@", self.storagePath);
     _db = [FMDatabase databaseWithPath:self.storagePath];
     if ([_db open]) {
         NSString *sql = @"CREATE TABLE IF NOT EXISTS search_statuses ( "
                 @"  id_str TEXT NOT NULL ON CONFLICT IGNORE UNIQUE ON CONFLICT REPLACE, "
+                @"  idx INTEGER NOT NULL, "
                 @"  text TEXT, "
                 @"  user_id_str TEXT NOT NULL ON CONFLICT IGNORE "
                 @");"
@@ -90,6 +92,11 @@
                 @"  profile_image_url_https TEXT "
                 @");";
         result = [_db executeStatements:sql];
+#if ATT_TRACE_SQLITE
+        if ([_db executeStatements:@"PRAGMA sql_trace = true;"]) {
+            ATTLog(ATT_STORAGE_LOG, @"sqlite trace enabled (PRAGMA sql_trace = true;)");
+        }
+#endif // ATT_TRACE_SQLITE
     }
     return result;
 }
@@ -122,10 +129,65 @@
 }
 
 - (void)saveSearchStatuses {
+    [self.db beginTransaction];
+    [self.searchStatuses enumerateObjectsUsingBlock:^(ATTStatusModel *status, NSUInteger idx, BOOL *stop) {
+        status.idx = idx;
+        [self saveSearchStatus:status];
+    }];
+    [self.db commit];
+}
+
+- (void)saveSearchStatus:(ATTStatusModel *)status {
+    NSString *sql = @"INSERT INTO search_statuses ("
+            @"      id_str, idx, text, user_id_str "
+            @"  )"
+            @"  VALUES ( "
+            @"      (?), "
+            @"      (?), "
+            @"      (?), "
+            @"      (?) "
+            @"  );";
+    [self.db executeUpdate:sql, status.entityId, @(status.idx), status.text, status.user.entityId];
+
+    [self saveUser:status.user];
+}
+
+- (void)saveUser:(ATTUserModel *)user {
+    NSString *sql = @"INSERT INTO users ("
+            @"      id_str, name, profile_image_url_https "
+            @"  )"
+            @"  VALUES ( "
+            @"      (?), "
+            @"      (?), "
+            @"      (?) "
+            @"  );";
+    [self.db executeUpdate:sql, user.entityId, user.name, user.profileImageUrlHttps];
 }
 
 - (NSArray<ATTStatusModel *> *)loadSearchStatuses {
-    return @[ ];
+    // Для простоты не учитываем дублирований записей. Всегда создаём новую копию.
+    
+    NSMutableArray<ATTStatusModel *> *result = [@[ ] mutableCopy];
+    NSString *sql = @"SELECT search_statuses.id_str, idx, text, user_id_str, name, profile_image_url_https "
+            @"  FROM search_statuses "
+            @"  LEFT OUTER JOIN users "
+            @"  WHERE search_statuses.user_id_str = users.id_str;";
+    FMResultSet *resultSet = [_db executeQuery:sql];
+
+    while ([resultSet next]) {
+        ATTStatusModel *status = [[ATTStatusModel alloc] init];
+        status.entityId = [resultSet stringForColumn:@"id_str"];
+        status.idx = [resultSet intForColumn:@"idx"];
+        status.text = [resultSet stringForColumn:@"text"];
+
+        status.user = [[ATTUserModel alloc] init];
+        status.user.entityId = [resultSet stringForColumn:@"user_id_str"];
+        status.user.name = [resultSet stringForColumn:@"name"];
+        status.user.profileImageUrlHttps = [resultSet stringForColumn:@"profile_image_url_https"];
+        
+        [result addObject:status];
+    }
+    return [result copy];
 }
 
 @end
