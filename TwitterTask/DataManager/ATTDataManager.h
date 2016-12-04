@@ -9,6 +9,7 @@
 
 @class ATTPersistenceStorage;
 @class ATTNetworkManager;
+@protocol ATTStatusesDataSource;
 
 @interface ATTDataManager : NSObject
 
@@ -28,9 +29,11 @@
  */
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
-// TODO: Вместо доступа к persistenceStorage, нужно предоставлять datasources
-// к каджому типу данных отдельно. и реализовывать фабрики источников данных.
-@property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
+
+/**
+ * @brief Получить источник данных для поиска.
+ */
+- (id<ATTStatusesDataSource>)dataSourceForSearch;
 
 
 @end

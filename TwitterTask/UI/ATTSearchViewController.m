@@ -35,7 +35,7 @@
 - (void)setDataManager:(ATTDataManager *)dataManager {
     if (_dataManager != dataManager) {
         _dataManager = dataManager;
-        self.twitterListViewController.dataSource = dataManager.persistenceStorage;
+        self.twitterListViewController.dataSource = [_dataManager dataSourceForSearch];
     }
 }
 
@@ -45,7 +45,7 @@
     if ([@"ATTTwitterListViewController" isEqualToString:segue.identifier]) {
         ATTTwitterListViewController *vc = (ATTTwitterListViewController *)segue.destinationViewController;
         self.twitterListViewController = vc;
-        [vc setDataSource:self.dataManager.persistenceStorage];
+        [vc setDataSource:[self.dataManager dataSourceForSearch]];
     }
 }
 

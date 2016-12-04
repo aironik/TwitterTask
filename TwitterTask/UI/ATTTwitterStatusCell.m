@@ -29,7 +29,7 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    self.textLabel.text = nil;
+    self.twitTextLabel.text = nil;
     self.nameLabel.text = nil;
     self.avatarView.image = nil;
 }
@@ -37,7 +37,7 @@
 - (void)setStatus:(ATTStatusModel *)status {
     if (_status != status) {
         _status = status;
-        self.textLabel.text = _status.text;
+        self.twitTextLabel.text = _status.text;
         self.nameLabel.text = _status.user.name;
         self.avatarView.image = nil;
     }

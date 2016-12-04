@@ -81,7 +81,7 @@
                                 <connections>
                                     <outlet property="avatarView" destination="3Pa-2T-fGb" id="o2y-7p-lEK"/>
                                     <outlet property="nameLabel" destination="sCy-WY-U04" id="APc-NU-4cz"/>
-                                    <outlet property="textLabel" destination="q4g-nr-zeE" id="1gX-ey-m2w"/>
+                                    <outlet property="twitTextLabel" destination="q4g-nr-zeE" id="aaN-cX-SaB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

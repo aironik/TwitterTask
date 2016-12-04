@@ -8,8 +8,8 @@
 
 #import "ATTTwitterListViewController.h"
 
-#import "ATTPersistenceStorage.h"
-#import "ATTPersistenceStorageObserver.h"
+#import "ATTStatusesDataSource.h"
+#import "ATTStatusesDataSourceObserver.h"
 #import "ATTTwitterStatusCell.h"
 
 
@@ -18,7 +18,7 @@
 #endif
 
 
-@interface ATTTwitterListViewController ()<ATTPersistenceStorageObserver>
+@interface ATTTwitterListViewController ()<ATTStatusesDataSourceObserver>
 @end
 
 
@@ -38,8 +38,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"%@", @(self.dataSource.searchStatuses.count));
-    return self.dataSource.searchStatuses.count;
+    ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"%@", @(self.dataSource.statuses.count));
+    return self.dataSource.statuses.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,23 +47,23 @@
     NSAssert(indexPath.section == 0, @"Unknown section. This table view is designed for single section only.");
     ATTTwitterStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ATTTwitterStatusCell"
                                                                       forIndexPath:indexPath];
-    cell.status = self.dataSource.searchStatuses[indexPath.row];
+    cell.status = self.dataSource.statuses[indexPath.row];
     return cell;
 }
 
-#pragma mark - ATTPersistenceStorageObserver implementation
+#pragma mark - ATTStatusesDataSourceObserver implementation
 
-- (void)storageWillChangeSearchStatuses:(ATTPersistenceStorage *)storage {
+- (void)dataSourceWillChangeStatuses:(id<ATTStatusesDataSource>)dataSource {
     ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"");
     [self.tableView beginUpdates];
 }
 
-- (void)storage:(ATTPersistenceStorage *)storage didAddSearchStatusesAtIndexPaths:(NSMutableArray<NSIndexPath *> *)indexPaths {
+- (void)dataSource:(id<ATTStatusesDataSource>)dataSource didAddStatusesAtIndexPaths:(NSMutableArray<NSIndexPath *> *)indexPaths {
     ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"");
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)storageDidChangeSearchStatuses:(ATTPersistenceStorage *)storage {
+- (void)dataSourceDidChangeStatuses:(id<ATTStatusesDataSource>)dataSource {
     ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"");
     [self.tableView endUpdates];
 }
@@ -71,7 +71,7 @@
 
 #pragma mark -
 
-- (void)setDataSource:(ATTPersistenceStorage *)dataSource {
+- (void)setDataSource:(id<ATTStatusesDataSource>)dataSource {
     _dataSource = dataSource;
     _dataSource.observer = self;
     if ([self isViewLoaded]) {

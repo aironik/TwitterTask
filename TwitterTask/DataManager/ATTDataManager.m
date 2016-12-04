@@ -10,6 +10,8 @@
 
 #import "ATTNetworkManager.h"
 #import "ATTPersistenceStorage.h"
+#import "ATTSearchStatusesDataSource.h"
+#import "ATTStatusesDataSource.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -20,6 +22,7 @@
 @interface ATTDataManager()
 
 @property (nonatomic, strong, readonly) NSOperationQueue *queue;     // < очередь, на которой выполняются операции.
+@property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 @property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) NSString *persistenceStoragePath;
@@ -119,6 +122,12 @@
     NSString *docPath = [paths firstObject];
     NSString *storagePath = [docPath stringByAppendingPathComponent:@"data/storage.db"];
     return storagePath;
+}
+
+
+- (id<ATTStatusesDataSource>)dataSourceForSearch {
+    ATTSearchStatusesDataSource *result = [[ATTSearchStatusesDataSource alloc] initWithPersistenceStorage:self.persistenceStorage];
+    return result;
 }
 
 

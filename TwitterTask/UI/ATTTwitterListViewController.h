@@ -7,7 +7,7 @@
 //
 
 
-@class ATTPersistenceStorage;
+@protocol ATTStatusesDataSource;
 
 
 /**
@@ -19,6 +19,6 @@
 /**
  * @brief DataSource твиттов.
  */
-@property (nonatomic, strong) ATTPersistenceStorage *dataSource;
+@property (nonatomic, strong) id<ATTStatusesDataSource> dataSource;
 
 @end
