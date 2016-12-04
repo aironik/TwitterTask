@@ -53,9 +53,11 @@
     XCTAssertFalse(dataManager.started, @"До запуска DataManager должен быть !started");
     
     [dataManager start];
+    ATT_TRY_WAIT(^{ return dataManager.started; } , 1.);
     XCTAssertTrue(dataManager.started, @"Запущенный DataManager должен быть стартован");
     
     [dataManager stop];
+    ATT_TRY_WAIT(^{ return !dataManager.started; } , 1.);
     XCTAssertFalse(dataManager.started, @"Остановленный DataManager должен быть !started");
 }
 
@@ -66,11 +68,13 @@
     XCTAssertNil(dataManager.networkManager, @"До запуска DataManager сеть не работает.");
     
     [dataManager start];
+    ATT_TRY_WAIT(^{ return dataManager.started; } , 1.);
     XCTAssertNotNil(dataManager.networkManager, @"При запуске DataManager должен запустить сеть.");
     XCTAssertTrue(dataManager.networkManager.started, @"При запуске DataManager должен запустить сеть.");
     XCTAssertGreaterThan([dataManager.networkManager.accessToken length], 0, @"Network Manager должен запуститься с access_token'ом.");
 
     [dataManager stop];
+    ATT_TRY_WAIT(^{ return !dataManager.started; } , 1.);
     XCTAssertFalse(dataManager.networkManager.started, @"После остановки DataManager должен остановить сеть.");
     XCTAssertNil(dataManager.networkManager, @"После остановки DataManager сеть должна остановиться.");
 }
@@ -82,10 +86,12 @@
     XCTAssertNil(dataManager.persistenceStorage, @"До запуска DataManager хранилище не работает.");
     
     [dataManager start];
+    ATT_TRY_WAIT(^{ return dataManager.started; } , 1.);
     XCTAssertNotNil(dataManager.persistenceStorage, @"При запуске DataManager должен запустить хранилище.");
     XCTAssertTrue(dataManager.persistenceStorage.started, @"При запуске DataManager хранилище должно запуститься.");
     
     [dataManager stop];
+    ATT_TRY_WAIT(^{ return !dataManager.started; } , 1.);
     XCTAssertNil(dataManager.persistenceStorage, @"После остановки DataManager хранилище должно остановиться.");
 }
 

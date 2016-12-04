@@ -8,6 +8,8 @@
 
 @class ATTStatusModel;
 
+@protocol ATTPersistenceStorageObserver;
+
 
 @interface ATTPersistenceStorage : NSObject
 
@@ -31,6 +33,17 @@
  * @brief Флаг готовности к работе.
  */
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
+
+/**
+ * @brief Очередь, на которой выполняются операции.
+ */
+@property (nonatomic, strong) NSOperationQueue *queue;
+
+/**
+ * @brief Слушатель изменений хранилишь
+ * @details Интерфейс подогнан для более удобной работы с UITableView
+ */
+@property (nonatomic, weak) id<ATTPersistenceStorageObserver> observer;
 
 /**
  * @brief Загрузить ранее сохранённый поисковый результат их хранилища.

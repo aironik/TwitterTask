@@ -35,6 +35,11 @@ typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *e
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
 /**
+ * @brief Очередь, на которой выполняются операции.
+ */
+@property (nonatomic, strong) NSOperationQueue *queue;
+
+/**
  * @brief Выполнить поисковый запрос
  * @details
  *      cat access_token.txt | xargs -0 curl -v -X GET "https://api.twitter.com/1.1/search/tweets.json?q=mobile" -o search.json -H

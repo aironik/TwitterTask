@@ -9,8 +9,12 @@
 #import "ATTNetworkManager.h"
 
 
+#if !(__has_feature(objc_arc))
+#error ARC required. Add -fobjc-arc compiler flag for this file.
+#endif
+
+
 static const NSTimeInterval kATTNetworkManagerTimeout = 30.;    // < Timeout сетевых запросов
-static const NSTimeInterval kATTNetworkManagerRetrive = 60.;    // < Время между запросами до повторения.
 static NSString *const kATTNetworkManagerStatusesKey = @"statuses";     // < Ключ массива
 static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая ошибка
 
@@ -70,15 +74,17 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
 }
 
 - (void)start {
+    NSAssert(NSOperationQueue.currentQueue == _queue, @"Impropper queue.");
     NSAssert(_urlSession == nil, @"Already started.");
 
     NSURLSessionConfiguration *urlSessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
     urlSessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
-    _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
+    _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration delegate:nil delegateQueue:self.queue];
     ATTLog(ATT_NETWORK_LOG, @"NSURLSession has started.");
 }
 
 - (void)stop {
+    NSAssert(NSOperationQueue.currentQueue == _queue, @"Impropper queue.");
     NSAssert(_urlSession != nil, @"No URLSession. Seems to be stopped.");
     [_urlSession invalidateAndCancel];
     _urlSession = nil;

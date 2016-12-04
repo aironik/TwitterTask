@@ -29,7 +29,6 @@
 /**
  * @brief Словарь соответствий свойств Entity полям JSON'а.
  * @details json_key_name => entityPropertyKeypath.
- * @return
  */
 @property (nonatomic, strong, readonly) NSDictionary<NSString *, NSString *> *jsonMap;
 

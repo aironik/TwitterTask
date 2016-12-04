@@ -9,6 +9,8 @@
 #import "ATTEntityModel.h"
 #import "ATTEntityModel+ATTProtected.h"
 
+#import <objc/objc-runtime.h>
+
 
 #if !(__has_feature(objc_arc))
 #error ARC required. Add -fobjc-arc compiler flag for this file.

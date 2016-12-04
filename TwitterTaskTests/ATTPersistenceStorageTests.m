@@ -102,7 +102,6 @@
     XCTAssertEqual([loadedSearchStatuses count], [jsonStatuses count], @"Загружено должно быть столько же, сколько сохранялось.");
 
     for (NSUInteger i = 0; i < 3; ++i) {
-        ATTStatusModel *model = loadedSearchStatuses[i];
         XCTAssertTrue([ATTStatusTestsHelper isEqualStatus:loadedSearchStatuses[i] toJson:jsonStatuses[i]],
                 @"Загруженный объект не равер сохранённому.");
     }

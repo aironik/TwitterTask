@@ -109,7 +109,7 @@
 		009B1AAA1DE49C9000115E35 /* access_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = access_token.txt; path = TwitterTask/Resources/access_token.txt; sourceTree = "<group>"; };
 		00ADA13C1DE6393E00D2ECD2 /* ATTNetworkManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManagerTests.m; sourceTree = "<group>"; };
 		00ADA1681DEA1EB400D2ECD2 /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = External/OCMock/Source/OCMock.xcodeproj; sourceTree = SOURCE_ROOT; };
-		00ADA1871DEADDEF00D2ECD2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		00ADA1871DEADDEF00D2ECD2 /* TwitterTask-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TwitterTask-Prefix.pch"; sourceTree = "<group>"; };
 		00ADA1971DEAE07B00D2ECD2 /* ATTLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATTLogger.h; path = ../ATTLogger.h; sourceTree = "<group>"; };
 		00ADA1981DEAE0A000D2ECD2 /* ATTDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTDefinitions.h; sourceTree = "<group>"; };
 		41D14D024F7388B2E9F555CB /* Pods-TwitterTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterTask/Pods-TwitterTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +119,7 @@
 		C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TwitterTaskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E3E0061A3E10F0546B37F9 /* ATTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTDataManager.m; sourceTree = "<group>"; };
 		C4E3E1252D374CB9DEAEB74F /* ATTStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusModel.h; sourceTree = "<group>"; };
+		C4E3E12D347F9C9CCB13AB5C /* ATTPersistenceStorageObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorageObserver.h; sourceTree = "<group>"; };
 		C4E3E1EA5497676B96CE1FA9 /* ATTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTNetworkManager.h; sourceTree = "<group>"; };
 		C4E3E2EED3A25DE6440CA2AE /* ATTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTDataManager.h; sourceTree = "<group>"; };
 		C4E3E2FAFA9E929B595DCA4F /* ATTStatusTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusTestsHelper.h; sourceTree = "<group>"; };
@@ -208,7 +209,7 @@
 				00ADA1981DEAE0A000D2ECD2 /* ATTDefinitions.h */,
 				00ADA1971DEAE07B00D2ECD2 /* ATTLogger.h */,
 				009B1A821DE49B9A00115E35 /* main.m */,
-				00ADA1871DEADDEF00D2ECD2 /* PrefixHeader.pch */,
+				00ADA1871DEADDEF00D2ECD2 /* TwitterTask-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -293,6 +294,7 @@
 				C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */,
 				C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */,
 				C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */,
+				C4E3E12D347F9C9CCB13AB5C /* ATTPersistenceStorageObserver.h */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -652,6 +654,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -665,7 +668,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/TwitterTask-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"LOG_ENABLED=1",
 					"DEBUG=1",
@@ -706,6 +709,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -717,7 +721,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/TwitterTask-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -807,6 +811,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -821,7 +826,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/TwitterTask/TwitterTask-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"LOG_ENABLED=1",
 					"DEBUG=1",

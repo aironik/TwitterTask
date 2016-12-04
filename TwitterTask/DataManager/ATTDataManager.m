@@ -12,8 +12,14 @@
 #import "ATTPersistenceStorage.h"
 
 
+#if !(__has_feature(objc_arc))
+#error ARC required. Add -fobjc-arc compiler flag for this file.
+#endif
+
+
 @interface ATTDataManager()
 
+@property (nonatomic, strong, readonly) NSOperationQueue *queue;     // < очередь, на которой выполняются операции.
 @property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
 @property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 @property (nonatomic, copy) NSString *accessToken;
@@ -27,6 +33,7 @@
 @implementation ATTDataManager
 
 
+@synthesize queue = _queue;
 @synthesize networkManager = _networkManager;
 @synthesize persistenceStorage = _persistenceStorage;
 @synthesize accessToken = _accessToken;
@@ -46,23 +53,55 @@
 }
 
 - (BOOL)isStarted {
-    return (_networkManager != nil && _persistenceStorage != nil);
+    return ([_networkManager isStarted] && [_persistenceStorage isStarted]);
 }
 
 - (void)start {
     _networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self accessToken]];
     _persistenceStorage = [[ATTPersistenceStorage alloc] initWithStoragePath:self.persistenceStoragePath];
-    
-    [_networkManager start];
-    [_persistenceStorage start];
+
+    if (_queue == nil) {
+        _queue = [[NSOperationQueue alloc] init];
+        _queue.name = NSStringFromClass([self class]);
+        _queue.maxConcurrentOperationCount = 1;             // < serial queue
+    }
+    _networkManager.queue = _queue;
+    _persistenceStorage.queue = _queue;
+
+                                     
+    WEAK_SELF
+    [_queue addOperationWithBlock:^{
+        STRONG_SELF
+        [strongSelf.networkManager start];
+        [strongSelf.persistenceStorage start];
+    }];
+
+
+    //    // TODO: REMOVE!!!
+    [self.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
+
+        NSLog(@"\nsearchResults:\n%@\n\n", searchResults);
+        NSLog(@"\nerror:\n%@\n\n", error);
+    }];
 }
 
 - (void)stop {
-    [_persistenceStorage stop];
-    [_networkManager stop];
+    if (_queue != NULL && _persistenceStorage != nil && _networkManager != nil) {
+        WEAK_SELF
+        [self.queue cancelAllOperations];
+        [self.queue addOperationWithBlock:^{
+            STRONG_SELF
+            if (strongSelf != nil) {
+                [strongSelf->_persistenceStorage stop];
+                [strongSelf->_networkManager stop];
 
-    _persistenceStorage = nil;
-    _networkManager = nil;
+                strongSelf->_persistenceStorage = nil;
+                strongSelf->_networkManager = nil;
+
+                strongSelf->_queue = nil;
+            }
+        }];
+    }
 }
 
 - (NSString *)loadAccessToken {

@@ -11,8 +11,8 @@
 
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "extobjc.h"
 
 #import "ATTDefinitions.h"
 #import "ATTLogger.h"

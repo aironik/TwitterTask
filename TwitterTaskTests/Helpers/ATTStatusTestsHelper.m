@@ -57,17 +57,17 @@
 
 + (BOOL)isEqualStatus:(ATTStatusModel *)model toJson:(NSDictionary *)json {
     BOOL result = YES;
-    XCTAssertTrue((result = result && [model.entityId isEqualToString:json[@"id_str"]]), @"Не равны");
-    XCTAssertTrue((result = result && [model.text isEqualToString:json[@"text"]]), @"Не равны");
+    result = result && [model.entityId isEqualToString:json[@"id_str"]];
+    result = result && [model.text isEqualToString:json[@"text"]];
     result = result && [self isEqualUser:model.user toJson:json[@"user"]];
     return result;
 }
 
 + (BOOL)isEqualUser:(ATTUserModel *)model toJson:(NSDictionary *)json {
     BOOL result = YES;
-    XCTAssertTrue((result = result && [model.entityId isEqualToString:json[@"id_str"]]), @"Не равны");
-    XCTAssertTrue((result = result && [model.name isEqualToString:json[@"name"]]), @"Не равны");
-    XCTAssertTrue((result = result && [model.profileImageUrlHttps isEqualToString:json[@"profile_image_url_https"]]), @"Не равны");
+    result = result && [model.entityId isEqualToString:json[@"id_str"]];
+    result = result && [model.name isEqualToString:json[@"name"]];
+    result = result && [model.profileImageUrlHttps isEqualToString:json[@"profile_image_url_https"]];
     return result;
 }
 

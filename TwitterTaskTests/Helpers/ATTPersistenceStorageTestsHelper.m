@@ -48,7 +48,7 @@
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path] && (![fileManager removeItemAtPath:path error:&error] || error != nil)) {
-        XCTFail(@"Cannot remove file.");
+        [NSException raise:@"Cannot remove file." format:@"Cannot remove file."];
     }
     ATTPersistenceStorage *storage = [[ATTPersistenceStorage alloc] initWithStoragePath:path];
     [storage start];
