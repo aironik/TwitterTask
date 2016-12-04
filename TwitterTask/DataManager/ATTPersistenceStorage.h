@@ -46,6 +46,11 @@
 @property (nonatomic, weak) id<ATTPersistenceStorageObserver> observer;
 
 /**
+ * @brief Текущие поисковые статусы.
+ */
+@property (atomic, strong) NSArray<ATTStatusModel *> *searchStatuses;
+
+/**
  * @brief Загрузить ранее сохранённый поисковый результат их хранилища.
  * @details Загружает данных с диска и возвращает результат. Внутреннее состояние не изменяется.
  * @return Загруженных из БД массив статусов.

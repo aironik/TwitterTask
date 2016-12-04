@@ -9,6 +9,12 @@
 #ifndef ATTDefinitions_h
 #define ATTDefinitions_h
 
+#if DEBUG
+    #define HAVE_DEBUG_REVEAL_FEATURE 1
+#else // DEBUG
+    #define HAVE_DEBUG_REVEAL_FEATURE 0
+#endif // DEBUG
+
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self;
 #define STRONG_SELF __strong typeof(weakSelf) strongSelf = weakSelf;

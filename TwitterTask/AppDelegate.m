@@ -8,7 +8,12 @@
 
 #import "AppDelegate.h"
 
+#if HAVE_DEBUG_REVEAL_FEATURE
+    #import <dlfcn.h>
+#endif // HAVE_DEBUG_REVEAL_FEATURE
+
 #import "ATTDataManager.h"
+#import "ATTSearchViewController.h"
 
 
 @interface AppDelegate ()
@@ -19,11 +24,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self startDebugFeatures];
     
     self.dataManager = [[ATTDataManager alloc] init];
     [self.dataManager start];
-    
+
+    UITabBarController *tcb = (UITabBarController *)self.window.rootViewController;
+    ATTSearchViewController *searchViewController = (ATTSearchViewController *)tcb.viewControllers[0];
+    searchViewController.dataManager = self.dataManager;
+
     return YES;
 }
 
@@ -53,6 +62,36 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+- (void)startDebugFeatures {
+#if HAVE_DEBUG_REVEAL_FEATURE
+    [self startDebugReveal];
+#endif // HAVE_DEBUG_REVEAL_FEATURE
+}
+
+
+#if HAVE_DEBUG_REVEAL_FEATURE
+- (void)startDebugReveal {
+    NSString *dyLibPath = @"/Applications/Reveal_1_6_3.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib";
+    NSLog(@"Loading dynamic library: %@", dyLibPath);
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dyLibPath]) {
+        NSLog(@"Cannot find Reveal library. Reveal didn't loaded.");
+    }
+    else {
+        void *revealLib = NULL;
+        revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+
+        if (revealLib == NULL) {
+            char *error = dlerror();
+            NSLog(@"Reveal dlopen error: %s", error);
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStart" object:self];
+        }
+    }
+}
+#endif // HAVE_DEBUG_REVEAL_FEATURE
 
 
 @end

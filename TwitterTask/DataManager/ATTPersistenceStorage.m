@@ -25,8 +25,6 @@
 @property (nonatomic, copy, readonly) NSString *storagePath;
 @property (nonatomic, strong, readonly) FMDatabase *db;
 
-@property (atomic, strong) NSArray<ATTStatusModel *> *searchStatuses;
-
 @end
 
 

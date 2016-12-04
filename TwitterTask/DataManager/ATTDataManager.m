@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong, readonly) NSOperationQueue *queue;     // < очередь, на которой выполняются операции.
 @property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
-@property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) NSString *persistenceStoragePath;
 
@@ -77,11 +76,16 @@
     }];
 
 
-    //    // TODO: REMOVE!!!
-    [self.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
-
-        NSLog(@"\nsearchResults:\n%@\n\n", searchResults);
-        NSLog(@"\nerror:\n%@\n\n", error);
+    // TODO: REMOVE!!!
+    [self.queue addOperationWithBlock:^{
+        STRONG_SELF
+        [strongSelf.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
+            STRONG_SELF
+            // TODO: handle errors
+            if (error == nil) {
+                [strongSelf.persistenceStorage addSearchStatusesJson:searchResults];
+            }
+        }];
     }];
 }
 

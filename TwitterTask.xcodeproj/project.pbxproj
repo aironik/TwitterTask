@@ -21,8 +21,11 @@
 		00ADA17F1DEA1EE800D2ECD2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ADA1761DEA1EB400D2ECD2 /* libOCMock.a */; };
 		559AA482C102D789165C267B /* libPods-TwitterTaskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C221B57A3C274BF4D9837D8D /* libPods-TwitterTaskTests.a */; };
 		ADBFDC9EEBAE366EA0CFFD69 /* libPods-TwitterTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB775D26DAA5F462DFC76942 /* libPods-TwitterTask.a */; };
+		C4E3E0CE2088D4657055BAEC /* ATTTwitterStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EA78F53FED02C8DFF570 /* ATTTwitterStatusCell.m */; };
 		C4E3E16AEEB92FA49C225AEF /* ATTPersistenceStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EE258AF56A7BF0A3CFD4 /* ATTPersistenceStorageTests.m */; };
 		C4E3E1C23C8EA24C62B1E0C4 /* ATTStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EF225858B81B60A9353A /* ATTStatusModel.m */; };
+		C4E3E39C1C4D9399C012AD5B /* ATTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E4CFEFEAC3E0ECBCA930 /* ATTSearchViewController.m */; };
+		C4E3E4A091507AF57795C072 /* ATTTwitterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E857130C281582DB4BCF /* ATTTwitterListViewController.m */; };
 		C4E3E5CEB6EE055BA0A818AC /* ATTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */; };
 		C4E3EB56C98331B125DB4D02 /* ATTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E32036C583D0AB1754EE /* ATTUserModel.m */; };
 		C4E3EBC4FCD4D27903263314 /* ATTEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */; };
@@ -123,13 +126,19 @@
 		C4E3E1EA5497676B96CE1FA9 /* ATTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTNetworkManager.h; sourceTree = "<group>"; };
 		C4E3E2EED3A25DE6440CA2AE /* ATTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTDataManager.h; sourceTree = "<group>"; };
 		C4E3E2FAFA9E929B595DCA4F /* ATTStatusTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusTestsHelper.h; sourceTree = "<group>"; };
+		C4E3E31640A38EB7E95B401E /* ATTSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTSearchViewController.h; sourceTree = "<group>"; };
 		C4E3E32036C583D0AB1754EE /* ATTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTUserModel.m; sourceTree = "<group>"; };
 		C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTStatusTestsHelper.m; sourceTree = "<group>"; };
 		C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManager.m; sourceTree = "<group>"; };
 		C4E3E48ACD6745C783815100 /* ATTEntityModel+ATTProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATTEntityModel+ATTProtected.h"; sourceTree = "<group>"; };
+		C4E3E4CFEFEAC3E0ECBCA930 /* ATTSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTSearchViewController.m; sourceTree = "<group>"; };
 		C4E3E5D87F7810F2FE657AF4 /* ATTPersistenceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorage.m; sourceTree = "<group>"; };
 		C4E3E7FA083E46FC8A7DBA1D /* ATTEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTEntityModel.h; sourceTree = "<group>"; };
+		C4E3E857130C281582DB4BCF /* ATTTwitterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTTwitterListViewController.m; sourceTree = "<group>"; };
 		C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorage.h; sourceTree = "<group>"; };
+		C4E3EA78F53FED02C8DFF570 /* ATTTwitterStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTTwitterStatusCell.m; sourceTree = "<group>"; };
+		C4E3EB87FECD71DE7C974E5C /* ATTTwitterStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTTwitterStatusCell.h; sourceTree = "<group>"; };
+		C4E3EBA0994985F3E82A7D91 /* ATTTwitterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTTwitterListViewController.h; sourceTree = "<group>"; };
 		C4E3ECC03039FF6C02AA210E /* ATTPersistenceStorageTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorageTestsHelper.h; sourceTree = "<group>"; };
 		C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTEntityModel.m; sourceTree = "<group>"; };
 		C4E3EE258AF56A7BF0A3CFD4 /* ATTPersistenceStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTPersistenceStorageTests.m; sourceTree = "<group>"; };
@@ -189,6 +198,7 @@
 				C4E3E20488F8DBD9FC90CAB5 /* DataManager */,
 				009B1AA91DE49C5400115E35 /* Resources */,
 				009B1A811DE49B9A00115E35 /* Supporting Files */,
+				C4E3E715A4B36091BC6046F8 /* UI */,
 				009B1A841DE49B9A00115E35 /* AppDelegate.h */,
 				009B1A851DE49B9A00115E35 /* AppDelegate.m */,
 				009B1A901DE49B9A00115E35 /* Assets.xcassets */,
@@ -308,6 +318,19 @@
 				C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C4E3E715A4B36091BC6046F8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3E31640A38EB7E95B401E /* ATTSearchViewController.h */,
+				C4E3E4CFEFEAC3E0ECBCA930 /* ATTSearchViewController.m */,
+				C4E3EBA0994985F3E82A7D91 /* ATTTwitterListViewController.h */,
+				C4E3E857130C281582DB4BCF /* ATTTwitterListViewController.m */,
+				C4E3EB87FECD71DE7C974E5C /* ATTTwitterStatusCell.h */,
+				C4E3EA78F53FED02C8DFF570 /* ATTTwitterStatusCell.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		F5E251D7F63AE89DE910A128 /* Frameworks */ = {
@@ -586,6 +609,9 @@
 				C4E3E1C23C8EA24C62B1E0C4 /* ATTStatusModel.m in Sources */,
 				C4E3EBC4FCD4D27903263314 /* ATTEntityModel.m in Sources */,
 				C4E3EB56C98331B125DB4D02 /* ATTUserModel.m in Sources */,
+				C4E3E39C1C4D9399C012AD5B /* ATTSearchViewController.m in Sources */,
+				C4E3E4A091507AF57795C072 /* ATTTwitterListViewController.m in Sources */,
+				C4E3E0CE2088D4657055BAEC /* ATTTwitterStatusCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

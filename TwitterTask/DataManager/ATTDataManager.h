@@ -6,6 +6,10 @@
 //  Copyright © 2016 aironik. All rights reserved.
 //
 
+
+@class ATTPersistenceStorage;
+@class ATTNetworkManager;
+
 @interface ATTDataManager : NSObject
 
 
@@ -23,6 +27,10 @@
  * @brief Флаг готовности к работе.
  */
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
+
+// TODO: Вместо доступа к persistenceStorage, нужно предоставлять datasources
+// к каджому типу данных отдельно. и реализовывать фабрики источников данных.
+@property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 
 
 @end
