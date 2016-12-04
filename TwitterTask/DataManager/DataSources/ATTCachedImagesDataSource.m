@@ -22,6 +22,7 @@
 @property (nonatomic, strong, readonly) NSMapTable<NSString *, id<ATTImagesDataSourceObserver>> *observers;
 @property (nonatomic, strong) ATTPersistenceStorage *storage;
 @property (nonatomic, strong) ATTNetworkManager *networkManager;
+@property (nonatomic, strong, readonly) NSCache *memoryCache;
 
 @end
 
@@ -32,6 +33,7 @@
 
 
 @synthesize observers = _observers;
+@synthesize memoryCache = _memoryCache;
 
 
 - (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage  networkManager:(ATTNetworkManager *)networkManager {
@@ -41,30 +43,40 @@
     else if (self = [super init]) {
         _storage = storage;
         _networkManager = networkManager;
-        _observers = [NSMapTable<NSString *, id <ATTImagesDataSourceObserver>> mapTableWithKeyOptions:NSPointerFunctionsCopyIn
-                                                                                         valueOptions:NSPointerFunctionsWeakMemory];
+        // TODO: т.к. слушить один и тот же URL могут несколько объектов, то нужно использовать
+        // что-нибудь а-ля std::list<std::pair<__strong NSString, __weak id<ATTImagesDataSourceObserver> > >
+        _observers = [NSMapTable<NSString *, id<ATTImagesDataSourceObserver>> mapTableWithKeyOptions:NSPointerFunctionsCopyIn
+                                                                                        valueOptions:NSPointerFunctionsWeakMemory];
+
+        _memoryCache = [[NSCache alloc] init];
+        _memoryCache.totalCostLimit = 50;       // < в ОЗУ храним до 50 картинок. Каждая картинка стоимостью 1.
     }
     return self;
 }
 
 - (UIImage *)imageAtUrl:(NSString *)url {
-    return [UIImage imageNamed:@"avatar_placeholder"];
+    UIImage *result = [self.memoryCache objectForKey:url];
+    if (result == nil) {
+        result = [UIImage imageNamed:@"avatar_placeholder"];
+        [self startLoadImageAtUrl:url]
+    }
+    return result;
 }
 
-- (id <ATTImagesDataSourceObserver>)observer {
-    return nil;
-}
-
-- (void)setObserver:(id <ATTImagesDataSourceObserver>)observer {
+- (void)startLoadImageAtUrl:(NSString *)url {
 
 }
 
 - (void)addObserver:(id <ATTImagesDataSourceObserver>)observer forImageAtUrl:(NSString *)url {
-
+    // Слушатели weak в соответствии с флагами NSMapTable
+    [self.observers setObject:observer forKey:url];
 }
 
 - (void)removeObserver:(id <ATTImagesDataSourceObserver>)observer forImageAtUrl:(NSString *)url {
-
+    id <ATTImagesDataSourceObserver> obs = [self.observers objectForKey:url];
+    if (obs == observer || obs == nil) {
+        [self.observers removeObjectForKey:url];
+    }
 }
 
 @end

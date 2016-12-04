@@ -58,9 +58,8 @@
         self.twitTextLabel.text = _status.text;
         self.nameLabel.text = _status.user.name;
         NSString *url = self.status.user.profileImageUrlHttps;
-        self.avatarView.image = [self.imageSource imageAtUrl:url];
         [self.imageSource addObserver:self forImageAtUrl:url];
-
+        self.avatarView.image = [self.imageSource imageAtUrl:url];
     }
 }
 

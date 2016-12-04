@@ -25,8 +25,6 @@
  */
 - (UIImage *)imageAtUrl:(NSString *)url;
 
-@property(nonatomic, weak) id<ATTImagesDataSourceObserver> observer;
-
 - (void)addObserver:(id<ATTImagesDataSourceObserver>)observer forImageAtUrl:(NSString *)url;
 - (void)removeObserver:(id<ATTImagesDataSourceObserver>)observer forImageAtUrl:(NSString *)url;
 
