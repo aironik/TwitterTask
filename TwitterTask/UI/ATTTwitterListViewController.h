@@ -7,6 +7,7 @@
 //
 
 
+@protocol ATTImagesDataSource;
 @protocol ATTStatusesDataSource;
 
 
@@ -20,5 +21,11 @@
  * @brief DataSource твиттов.
  */
 @property (nonatomic, strong) id<ATTStatusesDataSource> dataSource;
+
+/**
+ * @brief Хоранилище картинок. Получает UIImage по URI.
+ */
+@property (nonatomic, strong) id<ATTImagesDataSource> imageSource;
+
 
 @end

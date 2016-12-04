@@ -10,6 +10,8 @@
 @class ATTPersistenceStorage;
 @class ATTNetworkManager;
 @protocol ATTStatusesDataSource;
+@protocol ATTImagesDataSource;
+
 
 @interface ATTDataManager : NSObject
 
@@ -35,5 +37,9 @@
  */
 - (id<ATTStatusesDataSource>)dataSourceForSearch;
 
+/**
+ * @brief Получить источник данных для картинок.
+ */
+- (id<ATTImagesDataSource>)dataSourceForImages;
 
 @end

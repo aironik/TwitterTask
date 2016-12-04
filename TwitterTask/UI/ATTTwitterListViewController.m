@@ -8,6 +8,7 @@
 
 #import "ATTTwitterListViewController.h"
 
+#import "ATTImagesDataSource.h"
 #import "ATTStatusesDataSource.h"
 #import "ATTStatusesDataSourceObserver.h"
 #import "ATTTwitterStatusCell.h"
@@ -47,6 +48,7 @@
     NSAssert(indexPath.section == 0, @"Unknown section. This table view is designed for single section only.");
     ATTTwitterStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ATTTwitterStatusCell"
                                                                       forIndexPath:indexPath];
+    cell.imageSource = self.imageSource;
     cell.status = self.dataSource.statuses[indexPath.row];
     return cell;
 }

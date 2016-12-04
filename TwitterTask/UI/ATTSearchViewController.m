@@ -36,6 +36,7 @@
     if (_dataManager != dataManager) {
         _dataManager = dataManager;
         self.twitterListViewController.dataSource = [_dataManager dataSourceForSearch];
+        self.twitterListViewController.imageSource = [_dataManager dataSourceForImages];
     }
 }
 
@@ -45,7 +46,8 @@
     if ([@"ATTTwitterListViewController" isEqualToString:segue.identifier]) {
         ATTTwitterListViewController *vc = (ATTTwitterListViewController *)segue.destinationViewController;
         self.twitterListViewController = vc;
-        [vc setDataSource:[self.dataManager dataSourceForSearch]];
+        vc.dataSource = [self.dataManager dataSourceForSearch];
+        vc.imageSource = [self.dataManager dataSourceForImages];
     }
 }
 

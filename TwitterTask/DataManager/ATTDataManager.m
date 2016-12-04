@@ -9,9 +9,11 @@
 #import "ATTDataManager.h"
 
 #import "ATTNetworkManager.h"
+#import "ATTImagesDataSource.h"
 #import "ATTPersistenceStorage.h"
 #import "ATTSearchStatusesDataSource.h"
 #import "ATTStatusesDataSource.h"
+#import "ATTCachedImagesDataSource.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -117,16 +119,31 @@
     return [fileContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (NSString *)loadPersistenceStoragePath {
+- (NSString *)loadDataPath {
     NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docPath = [paths firstObject];
-    NSString *storagePath = [docPath stringByAppendingPathComponent:@"data/storage.db"];
+    NSString *dataPath = [docPath stringByAppendingPathComponent:@"data"];
+    return dataPath;
+}
+
+- (NSString *)loadPersistenceStoragePath {
+    NSString *storagePath = [[self loadDataPath] stringByAppendingPathComponent:@"storage.db"];
     return storagePath;
 }
 
+- (NSString *)loadImagesCachePath {
+    NSString *cachePath = [[self loadDataPath] stringByAppendingPathComponent:@"images"];
+    return cachePath;
+}
 
 - (id<ATTStatusesDataSource>)dataSourceForSearch {
     ATTSearchStatusesDataSource *result = [[ATTSearchStatusesDataSource alloc] initWithPersistenceStorage:self.persistenceStorage];
+    return result;
+}
+
+- (id<ATTImagesDataSource>)dataSourceForImages {
+    ATTCachedImagesDataSource *result = [[ATTCachedImagesDataSource alloc] initWithCachePath:[self loadImagesCachePath]];
+    result.queue = self.queue;
     return result;
 }
 

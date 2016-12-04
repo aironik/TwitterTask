@@ -10,7 +10,8 @@
 
 #import "ATTStatusModel.h"
 #import "ATTUserModel.h"
-#import "ATTDataManager.h"
+#import "ATTImagesDataSource.h"
+#import "ATTImagesDataSourceObserver.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -18,7 +19,7 @@
 #endif
 
 
-@interface ATTTwitterStatusCell ()
+@interface ATTTwitterStatusCell ()<ATTImagesDataSourceObserver>
 @end
 
 
@@ -27,19 +28,39 @@
 @implementation ATTTwitterStatusCell
 
 
+#pragma mark - ATTImagesDataSourceObserver
+
+- (void)dataSource:(id <ATTImagesDataSource>)dataSource didLoadImage:(UIImage *)image atUrl:(NSString *)url {
+    if ([url isEqualToString:self.status.user.profileImageUrlHttps]) {
+        self.avatarView.image = nil;
+    }
+}
+
+
+#pragma mark -
+
 - (void)prepareForReuse {
+    if (self.status != nil) {
+        [self.imageSource removeObserver:self forImageAtUrl:self.status.user.profileImageUrlHttps];
+        self.twitTextLabel.text = nil;
+        self.nameLabel.text = nil;
+        self.avatarView.image = nil;
+    }
     [super prepareForReuse];
-    self.twitTextLabel.text = nil;
-    self.nameLabel.text = nil;
-    self.avatarView.image = nil;
 }
 
 - (void)setStatus:(ATTStatusModel *)status {
     if (_status != status) {
+        if (_status != nil) {
+            [self.imageSource removeObserver:self forImageAtUrl:_status.user.profileImageUrlHttps];
+        }
         _status = status;
         self.twitTextLabel.text = _status.text;
         self.nameLabel.text = _status.user.name;
-        self.avatarView.image = nil;
+        NSString *url = self.status.user.profileImageUrlHttps;
+        self.avatarView.image = [self.imageSource imageAtUrl:url];
+        [self.imageSource addObserver:self forImageAtUrl:url];
+
     }
 }
 
