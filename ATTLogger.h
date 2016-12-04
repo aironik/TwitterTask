@@ -17,8 +17,10 @@
 
 #pragma mark - Log Features/Tags Definitions
 
-#define ATT_NETWORK_LOG 1
-#define ATT_STORAGE_LOG 1
+#define ATT_NETWORK_LOG 0
+#define ATT_STORAGE_LOG 0
+#define ATT_UI_SEARCH_LIST_LOG 1
+
 
 
 #if (ATT_STORAGE_LOG && LOG_ENABLED)
@@ -32,6 +34,8 @@
 #if LOG_ENABLED
 
     #define ATTLog(tag, ...) if (tag) { NSLog(@"%@", [@#tag ": " stringByAppendingString:[NSString stringWithFormat:__VA_ARGS__]]); }
+
+    #define ATTLogMethod(tag, ...) if (tag) { NSLog(@"%@", [NSString stringWithFormat:@#tag ": %@ %@", NSStringFromSelector(_cmd), [NSString stringWithFormat:__VA_ARGS__]]); }
 
 #else // LOG_ENABLED
 
