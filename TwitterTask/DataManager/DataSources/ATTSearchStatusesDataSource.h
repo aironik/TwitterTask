@@ -10,6 +10,7 @@
 #import "ATTStatusesDataSource.h"
 
 
+@class ATTNetworkManager;
 @class ATTPersistenceStorage;
 @class ATTStatusModel;
 @protocol ATTStatusesDataSourceObserver;
@@ -24,7 +25,7 @@
 /**
  * @brief Создать источник данных.
  */
-- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage;
+- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage  networkManager:(ATTNetworkManager *)networkManager;
 
 /* ATTStatusesDataSource implementation */
 @property (atomic, strong) NSArray<ATTStatusModel *> *statuses;

@@ -8,6 +8,7 @@
 
 #import "ATTSearchStatusesDataSource.h"
 
+#import "ATTNetworkManager.h"
 #import "ATTPersistenceStorage.h"
 #import "ATTPersistenceStorageObserver.h"
 #import "ATTStatusesDataSource.h"
@@ -22,6 +23,7 @@
 @interface ATTSearchStatusesDataSource ()<ATTPersistenceStorageObserver>
 
 @property (nonatomic, strong) ATTPersistenceStorage *storage;
+@property (nonatomic, strong) ATTNetworkManager *networkManager;
 
 @end
 
@@ -35,12 +37,13 @@
 @synthesize observer = _observer;
 
 
-- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage {
-    if (storage == nil) {
+- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage  networkManager:(ATTNetworkManager *)networkManager {
+    if (storage == nil || networkManager == nil) {
         self = nil;
     }
     else if (self = [super init]) {
         _storage = storage;
+        _networkManager = networkManager;
         storage.observer = self;
     }
     return self;

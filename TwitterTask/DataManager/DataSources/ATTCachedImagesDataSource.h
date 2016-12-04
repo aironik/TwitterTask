@@ -9,6 +9,10 @@
 #import "ATTImagesDataSource.h"
 
 
+@class ATTPersistenceStorage;
+@class ATTNetworkManager;
+
+
 /**
  * @brief Источник данных для картинок с кешированием в памяти и на диске.
  */
@@ -16,10 +20,9 @@
 
 
 /**
- * @brief Инициализировать хранилище картинок.
- * @param cachePath Путь в файловой системе для хранения картинок.
+ * @brief Инициализировать источник данных картинок.
  */
-- (instancetype)initWithCachePath:(NSString *)cachePath;
+- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage  networkManager:(ATTNetworkManager *)networkManager;
 
 /**
  * @brief Очередь, на которой выполняются операции.

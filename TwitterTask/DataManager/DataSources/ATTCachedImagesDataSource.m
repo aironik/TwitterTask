@@ -9,6 +9,7 @@
 #import "ATTCachedImagesDataSource.h"
 
 #import "ATTImagesDataSource.h"
+#import "ATTNetworkManager.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -18,8 +19,9 @@
 
 @interface ATTCachedImagesDataSource ()
 
-@property (nonatomic, copy) NSString *cachePath;
 @property (nonatomic, strong, readonly) NSMapTable<NSString *, id<ATTImagesDataSourceObserver>> *observers;
+@property (nonatomic, strong) ATTPersistenceStorage *storage;
+@property (nonatomic, strong) ATTNetworkManager *networkManager;
 
 @end
 
@@ -29,22 +31,19 @@
 @implementation ATTCachedImagesDataSource
 
 
-@synthesize cachePath = _cachePath;
 @synthesize observers = _observers;
 
 
-- (instancetype)initWithCachePath:(NSString *)cachePath {
-    if (self = [super init]) {
+- (instancetype)initWithPersistenceStorage:(ATTPersistenceStorage *)storage  networkManager:(ATTNetworkManager *)networkManager {
+    if (storage == nil || networkManager == nil) {
+        self = nil;
+    }
+    else if (self = [super init]) {
+        _storage = storage;
+        _networkManager = networkManager;
         _observers = [NSMapTable<NSString *, id <ATTImagesDataSourceObserver>> mapTableWithKeyOptions:NSPointerFunctionsCopyIn
                                                                                          valueOptions:NSPointerFunctionsWeakMemory];
-        _cachePath = [cachePath copy];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:_cachePath]) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:_cachePath
-                                      withIntermediateDirectories:YES
-                                                       attributes:nil
-                                                            error:nil];
-        }
-}
+    }
     return self;
 }
 

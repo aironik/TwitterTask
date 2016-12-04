@@ -14,7 +14,7 @@
 #import "ATTSearchStatusesDataSource.h"
 #import "ATTStatusesDataSource.h"
 #import "ATTCachedImagesDataSource.h"
-
+#import "ATTUpdater.h"
 
 #if !(__has_feature(objc_arc))
 #error ARC required. Add -fobjc-arc compiler flag for this file.
@@ -26,6 +26,7 @@
 @property (nonatomic, strong, readonly) NSOperationQueue *queue;     // < очередь, на которой выполняются операции.
 @property (nonatomic, strong, readonly) ATTPersistenceStorage *persistenceStorage;
 @property (nonatomic, strong, readonly) ATTNetworkManager *networkManager;
+@property (nonatomic, strong, readonly) ATTUpdater *updater;
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) NSString *persistenceStoragePath;
 
@@ -40,6 +41,7 @@
 @synthesize queue = _queue;
 @synthesize networkManager = _networkManager;
 @synthesize persistenceStorage = _persistenceStorage;
+@synthesize updater = _updater;
 @synthesize accessToken = _accessToken;
 @synthesize persistenceStoragePath = _persistenceStoragePath;
 
@@ -57,12 +59,13 @@
 }
 
 - (BOOL)isStarted {
-    return ([_networkManager isStarted] && [_persistenceStorage isStarted]);
+    return ([_networkManager isStarted] && [_persistenceStorage isStarted] && [_updater isStarted]);
 }
 
 - (void)start {
     _networkManager = [[ATTNetworkManager alloc] initWithAccessToken:[self accessToken]];
     _persistenceStorage = [[ATTPersistenceStorage alloc] initWithStoragePath:self.persistenceStoragePath];
+    _updater = [[ATTUpdater alloc] initWithPersistenceStorage:_persistenceStorage networkManager:_networkManager];
 
     if (_queue == nil) {
         _queue = [[NSOperationQueue alloc] init];
@@ -71,26 +74,14 @@
     }
     _networkManager.queue = _queue;
     _persistenceStorage.queue = _queue;
-
+    _updater.queue = _queue;
                                      
     WEAK_SELF
     [_queue addOperationWithBlock:^{
         STRONG_SELF
         [strongSelf.networkManager start];
         [strongSelf.persistenceStorage start];
-    }];
-
-
-    // TODO: REMOVE!!!
-    [self.queue addOperationWithBlock:^{
-        STRONG_SELF
-        [strongSelf.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
-            STRONG_SELF
-            // TODO: handle errors
-            if (error == nil) {
-                [strongSelf.persistenceStorage addSearchStatusesJson:searchResults];
-            }
-        }];
+        [strongSelf.updater start];
     }];
 }
 
@@ -101,9 +92,11 @@
         [self.queue addOperationWithBlock:^{
             STRONG_SELF
             if (strongSelf != nil) {
+                [strongSelf->_updater stop];
                 [strongSelf->_persistenceStorage stop];
                 [strongSelf->_networkManager stop];
 
+                strongSelf->_updater = nil;
                 strongSelf->_persistenceStorage = nil;
                 strongSelf->_networkManager = nil;
 
@@ -137,12 +130,16 @@
 }
 
 - (id<ATTStatusesDataSource>)dataSourceForSearch {
-    ATTSearchStatusesDataSource *result = [[ATTSearchStatusesDataSource alloc] initWithPersistenceStorage:self.persistenceStorage];
+    ATTSearchStatusesDataSource *result = [[ATTSearchStatusesDataSource alloc]
+                                           initWithPersistenceStorage:self.persistenceStorage
+                                           networkManager:self.networkManager];
     return result;
 }
 
 - (id<ATTImagesDataSource>)dataSourceForImages {
-    ATTCachedImagesDataSource *result = [[ATTCachedImagesDataSource alloc] initWithCachePath:[self loadImagesCachePath]];
+    ATTCachedImagesDataSource *result = [[ATTCachedImagesDataSource alloc]
+                                         initWithPersistenceStorage:self.persistenceStorage
+                                         networkManager:self.networkManager];
     result.queue = self.queue;
     return result;
 }
