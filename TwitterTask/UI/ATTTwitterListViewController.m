@@ -44,9 +44,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"(%@, %@)", @(indexPath.section), @(indexPath.row));
+    NSAssert(indexPath.section == 0, @"Unknown section. This table view is designed for single section only.");
     ATTTwitterStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ATTTwitterStatusCell"
                                                                       forIndexPath:indexPath];
-    cell.nameLabel.text = [@(indexPath.row) description];
+    cell.status = self.dataSource.searchStatuses[indexPath.row];
     return cell;
 }
 
@@ -59,7 +60,7 @@
 
 - (void)storage:(ATTPersistenceStorage *)storage didAddSearchStatusesAtIndexPaths:(NSMutableArray<NSIndexPath *> *)indexPaths {
     ATTLogMethod(ATT_UI_SEARCH_LIST_LOG, @"");
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)storageDidChangeSearchStatuses:(ATTPersistenceStorage *)storage {
