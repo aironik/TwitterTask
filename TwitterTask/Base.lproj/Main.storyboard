@@ -113,10 +113,22 @@
                                     <segue destination="hCr-Bc-Bro" kind="embed" identifier="ATTTwitterListViewController" id="Nhz-5t-5Fd"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWK-ze-3d0">
+                                <rect key="frame" x="275" y="574" width="100" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="FLs-AF-dSS"/>
+                                    <constraint firstAttribute="height" constant="44" id="jmW-rn-EQW"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="rKd-Yz-zOe" kind="embed" identifier="ATTUpdateCoundownViewController" id="pOs-g9-AN7"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DNG-41-POt" firstAttribute="leading" secondItem="Cxh-tm-Vf1" secondAttribute="leading" id="7jl-kw-6Qr"/>
+                            <constraint firstItem="0Du-rb-1r9" firstAttribute="top" secondItem="JWK-ze-3d0" secondAttribute="bottom" id="A9w-gR-kGH"/>
+                            <constraint firstAttribute="trailing" secondItem="JWK-ze-3d0" secondAttribute="trailing" id="iCs-S5-l7j"/>
                             <constraint firstItem="0Du-rb-1r9" firstAttribute="top" secondItem="DNG-41-POt" secondAttribute="bottom" id="mPD-JD-xgb"/>
                             <constraint firstItem="DNG-41-POt" firstAttribute="top" secondItem="3ei-Vc-SFA" secondAttribute="bottom" id="op8-RQ-ITd"/>
                             <constraint firstAttribute="trailing" secondItem="DNG-41-POt" secondAttribute="trailing" id="pFS-uu-N1i"/>
@@ -127,6 +139,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iyz-X7-G38" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1262" y="-974"/>
+        </scene>
+        <!--Update Coundown View Controller-->
+        <scene sceneID="e3w-4U-rR1">
+            <objects>
+                <viewController id="rKd-Yz-zOe" customClass="ATTUpdateCoundownViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E1F-lb-KVQ">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9f-pG-fj7">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KaS-gE-Gwm">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23165404957760066" green="0.34035071500277037" blue="0.44276230569948183" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="n9f-pG-fj7" secondAttribute="bottom" id="9Hd-Nw-rcR"/>
+                            <constraint firstItem="n9f-pG-fj7" firstAttribute="top" secondItem="E1F-lb-KVQ" secondAttribute="top" id="D1z-9L-plM"/>
+                            <constraint firstItem="n9f-pG-fj7" firstAttribute="leading" secondItem="E1F-lb-KVQ" secondAttribute="leading" id="Wmp-JI-qiX"/>
+                            <constraint firstItem="KaS-gE-Gwm" firstAttribute="leading" secondItem="E1F-lb-KVQ" secondAttribute="leading" id="X9a-1z-fbn"/>
+                            <constraint firstItem="KaS-gE-Gwm" firstAttribute="top" secondItem="E1F-lb-KVQ" secondAttribute="top" id="XUH-If-nmp"/>
+                            <constraint firstAttribute="trailing" secondItem="KaS-gE-Gwm" secondAttribute="trailing" id="jtS-Yv-NJM"/>
+                            <constraint firstAttribute="trailing" secondItem="n9f-pG-fj7" secondAttribute="trailing" id="smU-Q3-lkr"/>
+                            <constraint firstAttribute="bottom" secondItem="KaS-gE-Gwm" secondAttribute="bottom" id="wRU-Oh-8BQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="KaS-gE-Gwm" id="6z4-xY-nlx"/>
+                        <outlet property="countdownLabel" destination="n9f-pG-fj7" id="BCH-7M-PTa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lzx-1n-tts" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1962" y="-439"/>
         </scene>
     </scenes>
 </document>

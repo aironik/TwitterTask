@@ -9,6 +9,7 @@
 #import "ATTUpdater.h"
 #import "ATTPersistenceStorage.h"
 #import "ATTNetworkManager.h"
+#import "ATTUpdaterObserver.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -38,7 +39,7 @@
     else if (self = [super init]) {
         _storage = storage;
         _networkManager = networkManager;
-        _updateTimeInterval = 10.;
+        _updateTimeInterval = 60.;
     }
     return self;
 }
@@ -74,6 +75,7 @@
         STRONG_SELF
         strongSelf.countdownTimeInterval -= 1.;
         ATTLog(ATT_UPDATER_LOG, @"Left For Update: %.0f", strongSelf.countdownTimeInterval);
+        [strongSelf.observer updater:strongSelf didUpdateTimer:strongSelf.countdownTimeInterval];
         if (strongSelf.countdownTimeInterval < 0.1) {
             [strongSelf startNextStep];
         }
@@ -84,10 +86,18 @@
 - (NSBlockOperation *)createUpdateOperation {
     ATTLog(ATT_UPDATER_LOG, @"Start network update");
     WEAK_SELF
+    [NSOperationQueue.mainQueue addOperationWithBlock:^{
+        STRONG_SELF
+        [strongSelf.observer updaterStartNetworkRequest:strongSelf];
+    }];
     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
         STRONG_SELF
         [strongSelf.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
             ATTLog(ATT_UPDATER_LOG, @"Network update receive: results: %@, errors: %@", @(searchResults.count), error == nil ? @"NO" : @"YES");
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                STRONG_SELF
+                [strongSelf.observer updaterFinishNetworkRequest:strongSelf];
+            }];
             STRONG_SELF
             // TODO: handle errors
             if (error == nil) {

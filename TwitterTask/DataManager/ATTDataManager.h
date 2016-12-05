@@ -11,6 +11,7 @@
 @class ATTNetworkManager;
 @protocol ATTStatusesDataSource;
 @protocol ATTImagesDataSource;
+@class ATTUpdater;
 
 
 @interface ATTDataManager : NSObject
@@ -31,6 +32,10 @@
  */
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
+/**
+ * @brief Объект, занимающийся автоматическим обновлением ленты.
+ */
+@property (nonatomic, strong, readonly) ATTUpdater *updater;
 
 /**
  * @brief Получить источник данных для поиска.

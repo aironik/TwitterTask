@@ -9,6 +9,7 @@
 
 @class ATTNetworkManager;
 @class ATTPersistenceStorage;
+@protocol ATTUpdaterObserver;
 
 
 /**
@@ -42,5 +43,7 @@
 @property (nonatomic, assign, readonly, getter=isStarted) BOOL started;
 
 - (void)scheduleNextStep;
+
+@property (nonatomic, weak) id<ATTUpdaterObserver> observer;
 
 @end

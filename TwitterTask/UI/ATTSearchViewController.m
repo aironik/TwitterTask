@@ -10,6 +10,7 @@
 
 #import "ATTDataManager.h"
 #import "ATTTwitterListViewController.h"
+#import "ATTUpdateCoundownViewController.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -20,7 +21,7 @@
 @interface ATTSearchViewController ()
 
 @property (nonatomic, weak) IBOutlet ATTTwitterListViewController *twitterListViewController;
-
+@property (nonatomic, weak) IBOutlet ATTUpdateCoundownViewController *countdownViewController;
 @end
 
 
@@ -37,6 +38,7 @@
         _dataManager = dataManager;
         self.twitterListViewController.dataSource = [_dataManager dataSourceForSearch];
         self.twitterListViewController.imageSource = [_dataManager dataSourceForImages];
+        self.countdownViewController.updater = _dataManager.updater;
     }
 }
 
@@ -48,6 +50,11 @@
         self.twitterListViewController = vc;
         vc.dataSource = [self.dataManager dataSourceForSearch];
         vc.imageSource = [self.dataManager dataSourceForImages];
+    }
+    else if ([@"ATTUpdateCoundownViewController" isEqualToString:segue.identifier]) {
+        ATTUpdateCoundownViewController *vc = (ATTUpdateCoundownViewController *)segue.destinationViewController;
+        self.countdownViewController = vc;
+        vc.updater = self.dataManager.updater;
     }
 }
 

@@ -31,6 +31,7 @@
 		C4E3E72B5740A3637E9D69F0 /* ATTCachedImagesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EB0EECABE5C5F27FC8CB /* ATTCachedImagesDataSource.m */; };
 		C4E3EB56C98331B125DB4D02 /* ATTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E32036C583D0AB1754EE /* ATTUserModel.m */; };
 		C4E3EBC4FCD4D27903263314 /* ATTEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3ECD8C2757BE4FCE9438A /* ATTEntityModel.m */; };
+		C4E3EC1DBD264090C787281A /* ATTUpdateCoundownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E3D38F53D6A8E66019B1 /* ATTUpdateCoundownViewController.m */; };
 		C4E3EC770AD81F79C18CCF74 /* ATTSearchStatusesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E77770BACF45AF98BAFA /* ATTSearchStatusesDataSource.m */; };
 		C4E3EC79DA3AC9EB389342B7 /* ATTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E0061A3E10F0546B37F9 /* ATTDataManager.m */; };
 		C4E3ECB63A1069FAAD6C7CE1 /* NSString+ATTMd5.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E7DC1BB42992E019B7C1 /* NSString+ATTMd5.m */; };
@@ -134,6 +135,7 @@
 		C4E3E2FAFA9E929B595DCA4F /* ATTStatusTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTStatusTestsHelper.h; sourceTree = "<group>"; };
 		C4E3E31640A38EB7E95B401E /* ATTSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTSearchViewController.h; sourceTree = "<group>"; };
 		C4E3E32036C583D0AB1754EE /* ATTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTUserModel.m; sourceTree = "<group>"; };
+		C4E3E3D38F53D6A8E66019B1 /* ATTUpdateCoundownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTUpdateCoundownViewController.m; sourceTree = "<group>"; };
 		C4E3E41F9001A39A7F54A749 /* ATTStatusTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTStatusTestsHelper.m; sourceTree = "<group>"; };
 		C4E3E4274827AA51765BDA4C /* ATTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTNetworkManager.m; sourceTree = "<group>"; };
 		C4E3E48ACD6745C783815100 /* ATTEntityModel+ATTProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATTEntityModel+ATTProtected.h"; sourceTree = "<group>"; };
@@ -144,10 +146,12 @@
 		C4E3E77770BACF45AF98BAFA /* ATTSearchStatusesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTSearchStatusesDataSource.m; sourceTree = "<group>"; };
 		C4E3E7DC1BB42992E019B7C1 /* NSString+ATTMd5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ATTMd5.m"; sourceTree = "<group>"; };
 		C4E3E7FA083E46FC8A7DBA1D /* ATTEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTEntityModel.h; sourceTree = "<group>"; };
+		C4E3E821E6E60E61EEA8262B /* ATTUpdateCoundownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTUpdateCoundownViewController.h; sourceTree = "<group>"; };
 		C4E3E857130C281582DB4BCF /* ATTTwitterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTTwitterListViewController.m; sourceTree = "<group>"; };
 		C4E3E8FA173C8B27C0F582BF /* ATTImagesDataSourceObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTImagesDataSourceObserver.h; sourceTree = "<group>"; };
 		C4E3E9881909FDF5F1BF27C2 /* ATTPersistenceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTPersistenceStorage.h; sourceTree = "<group>"; };
 		C4E3EA02782EC84E3D2C3767 /* ATTImagesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTImagesDataSource.h; sourceTree = "<group>"; };
+		C4E3EA59DAB84C403C4AD2BB /* ATTUpdaterObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTUpdaterObserver.h; sourceTree = "<group>"; };
 		C4E3EA78F53FED02C8DFF570 /* ATTTwitterStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTTwitterStatusCell.m; sourceTree = "<group>"; };
 		C4E3EAE0EB64E4D9D6E449A6 /* ATTCachedImagesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTCachedImagesDataSource.h; sourceTree = "<group>"; };
 		C4E3EB0EECABE5C5F27FC8CB /* ATTCachedImagesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTCachedImagesDataSource.m; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 				C4E3E6EA4591969922A1044A /* ATTStatusesDataSourceObserver.h */,
 				C4E3E16E3C1618EDB6721673 /* ATTUpdater.h */,
 				C4E3EED7104690D960E78406 /* ATTUpdater.m */,
+				C4E3EA59DAB84C403C4AD2BB /* ATTUpdaterObserver.h */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -364,6 +369,8 @@
 				C4E3E857130C281582DB4BCF /* ATTTwitterListViewController.m */,
 				C4E3EB87FECD71DE7C974E5C /* ATTTwitterStatusCell.h */,
 				C4E3EA78F53FED02C8DFF570 /* ATTTwitterStatusCell.m */,
+				C4E3E3D38F53D6A8E66019B1 /* ATTUpdateCoundownViewController.m */,
+				C4E3E821E6E60E61EEA8262B /* ATTUpdateCoundownViewController.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -660,6 +667,7 @@
 				C4E3E72B5740A3637E9D69F0 /* ATTCachedImagesDataSource.m in Sources */,
 				C4E3E4A0FBB6FED0FC22AD2E /* ATTUpdater.m in Sources */,
 				C4E3ECB63A1069FAAD6C7CE1 /* NSString+ATTMd5.m in Sources */,
+				C4E3EC1DBD264090C787281A /* ATTUpdateCoundownViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
