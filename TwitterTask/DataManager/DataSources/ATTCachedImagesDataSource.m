@@ -71,23 +71,18 @@
         STRONG_SELF
         UIImage *image = [UIImage imageWithData:[self.storage dataForUrl:url]];
         if (image != nil) {
+            [self.memoryCache setObject:image forKey:url cost:1];
             [self notifyImageLoaded:image url:url];
         }
         else {
             [strongSelf.networkManager loadDataAtUrl:url completionHandler:^(NSData *data, NSError *error) {
                 STRONG_SELF
-                [strongSelf handleLoadData:data atUrl:url error:error];
+                if ([data length] > 0) {
+                    [strongSelf didLoadImageData:data fromUrl:url];
+                }
             }];
         }
     }];
-}
-
-- (void)handleLoadData:(NSData *)data atUrl:(NSString *)url error:(NSError *)error {
-    UIImage *image = nil;
-    if ([data length] > 0) {
-        [self didLoadImageData:data fromUrl:url];
-    }
-
 }
 
 - (void)didLoadImageData:(NSData *)data fromUrl:(NSString *)url {
@@ -104,8 +99,8 @@
     WEAK_SELF
     [NSOperationQueue.mainQueue addOperationWithBlock:^{
         STRONG_SELF
-        id<ATTImagesDataSourceObserver> observer = [self observerForUrl:url];
-        [observer dataSource:self didLoadImage:image atUrl:url];
+        id<ATTImagesDataSourceObserver> observer = [strongSelf observerForUrl:url];
+        [observer dataSource:strongSelf didLoadImage:image atUrl:url];
     }];
 }
 

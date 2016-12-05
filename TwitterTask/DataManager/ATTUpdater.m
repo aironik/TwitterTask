@@ -73,6 +73,7 @@
     self.countdownTimer = [NSTimer timerWithTimeInterval:1. repeats:YES block:^(NSTimer *timer) {
         STRONG_SELF
         strongSelf.countdownTimeInterval -= 1.;
+        ATTLog(ATT_UPDATER_LOG, @"Left For Update: %.0f", strongSelf.countdownTimeInterval);
         if (strongSelf.countdownTimeInterval < 0.1) {
             [strongSelf startNextStep];
         }
@@ -81,10 +82,12 @@
 }
 
 - (NSBlockOperation *)createUpdateOperation {
+    ATTLog(ATT_UPDATER_LOG, @"Start network update");
     WEAK_SELF
     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
         STRONG_SELF
         [strongSelf.networkManager search:@"Mobile" completionHandler:^(NSArray *searchResults, NSError *error) {
+            ATTLog(ATT_UPDATER_LOG, @"Network update receive: results: %@, errors: %@", @(searchResults.count), error == nil ? @"NO" : @"YES");
             STRONG_SELF
             // TODO: handle errors
             if (error == nil) {

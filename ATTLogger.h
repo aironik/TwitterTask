@@ -19,7 +19,8 @@
 
 #define ATT_NETWORK_LOG 0
 #define ATT_STORAGE_LOG 0
-#define ATT_UI_SEARCH_LIST_LOG 1
+#define ATT_UI_SEARCH_LIST_LOG 0
+#define ATT_UPDATER_LOG 1
 
 
 

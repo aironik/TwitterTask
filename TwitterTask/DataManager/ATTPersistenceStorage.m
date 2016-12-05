@@ -13,6 +13,7 @@
 #import "ATTPersistenceStorageObserver.h"
 #import "ATTStatusModel.h"
 #import "ATTUserModel.h"
+#import "NSString+ATTMd5.h"
 
 
 #if !(__has_feature(objc_arc))
@@ -22,7 +23,9 @@
 
 @interface ATTPersistenceStorage()
 
-@property (nonatomic, copy, readonly) NSString *storagePath;
+@property (nonatomic, copy, readonly) NSString *storagePath1;
+@property (nonatomic, copy, readonly) NSString *sqliteStoragePath;
+@property (nonatomic, copy, readonly) NSString *cacheStoragePath;
 @property (nonatomic, strong, readonly) FMDatabase *db;
 
 @end
@@ -33,7 +36,9 @@
 @implementation ATTPersistenceStorage
 
 
-@synthesize storagePath = _storagePath;
+@synthesize storagePath1 = _storagePath1;
+@synthesize sqliteStoragePath = _sqliteStoragePath;
+@synthesize cacheStoragePath = _cacheStoragePath;
 @synthesize db = _db;
 
 
@@ -43,7 +48,10 @@
 }
 - (instancetype)initWithStoragePath:(NSString *)storagePath {
     if (self = [super init]) {
-        _storagePath = [storagePath copy];
+        _storagePath1 = [storagePath copy];
+        _sqliteStoragePath = [_storagePath1 stringByAppendingPathComponent:@"storage.db"];
+        _cacheStoragePath = [_storagePath1 stringByAppendingPathComponent:@"cache"];
+
     }
     return self;
 }
@@ -55,6 +63,7 @@
         self.queue = NSOperationQueue.currentQueue;
     }
     [self startDb];
+    [self startCache];
 }
 
 - (void)stop {
@@ -82,17 +91,27 @@
     }
 }
 
-- (BOOL)createTablesIfNeeds {
-    NSAssert(NSOperationQueue.currentQueue == _queue, @"Impropper queue.");
-    BOOL result = NO;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:self.storagePath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:[self.storagePath stringByDeletingLastPathComponent]
+- (void)startCache {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.cacheStoragePath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.cacheStoragePath
                                   withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:nil];
     }
-    ATTLog(ATT_STORAGE_LOG, @"Open database %@", self.storagePath);
-    _db = [FMDatabase databaseWithPath:self.storagePath];
+    ATTLog(ATT_STORAGE_LOG, @"Open cache dir %@", self.cacheStoragePath);
+}
+
+- (BOOL)createTablesIfNeeds {
+    NSAssert(NSOperationQueue.currentQueue == _queue, @"Impropper queue.");
+    BOOL result = NO;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.sqliteStoragePath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:[self.sqliteStoragePath stringByDeletingLastPathComponent]
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
+    }
+    ATTLog(ATT_STORAGE_LOG, @"Open database %@", self.sqliteStoragePath);
+    _db = [FMDatabase databaseWithPath:self.sqliteStoragePath];
     if ([_db open]) {
         NSString *sql = @"CREATE TABLE IF NOT EXISTS search_statuses ( "
                 @"  id_str TEXT NOT NULL ON CONFLICT IGNORE UNIQUE ON CONFLICT REPLACE, "
@@ -266,12 +285,15 @@
 }
 
 - (void)addImageData:(NSData *)data forUrl:(NSString *)url {
-
+    [data writeToFile:[self cachePathForUrl:url] atomically:YES];
 }
 
 - (NSData *)dataForUrl:(NSString *)url {
-    return nil;
+    return [NSData dataWithContentsOfFile:[self cachePathForUrl:url]];
 }
 
+- (NSString *)cachePathForUrl:(NSString *)url {
+    return [self.cacheStoragePath stringByAppendingPathComponent:[url md5String]];
+}
 
 @end

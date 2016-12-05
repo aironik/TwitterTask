@@ -49,7 +49,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _accessToken = [self loadAccessToken];
-        _persistenceStoragePath = [self loadPersistenceStoragePath];
+        _persistenceStoragePath = [self loadDataPath];
     }
     return self;
 }
@@ -117,16 +117,6 @@
     NSString *docPath = [paths firstObject];
     NSString *dataPath = [docPath stringByAppendingPathComponent:@"data"];
     return dataPath;
-}
-
-- (NSString *)loadPersistenceStoragePath {
-    NSString *storagePath = [[self loadDataPath] stringByAppendingPathComponent:@"storage.db"];
-    return storagePath;
-}
-
-- (NSString *)loadImagesCachePath {
-    NSString *cachePath = [[self loadDataPath] stringByAppendingPathComponent:@"images"];
-    return cachePath;
 }
 
 - (id<ATTStatusesDataSource>)dataSourceForSearch {
