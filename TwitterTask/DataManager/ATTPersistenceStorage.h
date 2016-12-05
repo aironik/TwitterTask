@@ -63,6 +63,16 @@
  */
 - (void)addSearchStatusesJson:(NSArray<NSDictionary *> *)statuses;
 
+/**
+ * @brief сохранить данные в кеш для соответствующего URL.
+ * @see -dataForUrl:
+ */
+- (void)addImageData:(NSData *)data forUrl:(NSString *)url;
 
+/**
+ * @brief Получить кешированные данные.
+ * @see -addImageData:forUrl:
+ */
+- (NSData *)dataForUrl:(NSString *)url;
 
 @end

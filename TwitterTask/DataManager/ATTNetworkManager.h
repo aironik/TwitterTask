@@ -7,6 +7,8 @@
 //
 
 typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *error);
+typedef void(^ATTNetworkManagerDataLoadHandler)(NSData *data, NSError *error);
+
 
 /**
  * @brief Класс, являющей центром сетевой активности.
@@ -45,5 +47,11 @@ typedef void(^ATTNetworkManagerSearchHandler)(NSArray *searchResults, NSError *e
  *      cat access_token.txt | xargs -0 curl -v -X GET "https://api.twitter.com/1.1/search/tweets.json?q=mobile" -o search.json -H
  */
 - (void)search:(NSString *)searchText completionHandler:(ATTNetworkManagerSearchHandler)completionHandler;
+
+/**
+ * @brief Выполнить загрузку данных по URL
+ */
+- (void)loadDataAtUrl:(NSString *)url completionHandler:(ATTNetworkManagerDataLoadHandler)completionHandler;
+
 
 @end

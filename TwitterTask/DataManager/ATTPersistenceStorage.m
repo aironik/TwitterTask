@@ -265,4 +265,13 @@
     return [result copy];
 }
 
+- (void)addImageData:(NSData *)data forUrl:(NSString *)url {
+
+}
+
+- (NSData *)dataForUrl:(NSString *)url {
+    return nil;
+}
+
+
 @end

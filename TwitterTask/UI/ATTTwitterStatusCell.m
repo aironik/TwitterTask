@@ -31,8 +31,9 @@
 #pragma mark - ATTImagesDataSourceObserver
 
 - (void)dataSource:(id <ATTImagesDataSource>)dataSource didLoadImage:(UIImage *)image atUrl:(NSString *)url {
+    NSAssert([NSThread isMainThread], @"Update have to execute on main thread.");
     if ([url isEqualToString:self.status.user.profileImageUrlHttps]) {
-        self.avatarView.image = nil;
+        self.avatarView.image = [self.imageSource imageAtUrl:url];
     }
 }
 

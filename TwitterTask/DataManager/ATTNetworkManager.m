@@ -186,5 +186,22 @@ static const NSInteger kATTNetworkManagerErrorCode = 1;         // < Общая 
     completionHandler(statuses, nil);
 }
 
+- (void)loadDataAtUrl:(NSString *)url completionHandler:(ATTNetworkManagerDataLoadHandler)completionHandler {
+    ATTLog(ATT_NETWORK_LOG, @"Load data at URL Request started. %@", url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+
+    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        ATTLog(ATT_NETWORK_LOG, @"Load data at URL finished. %@", url);
+        if (error != nil
+                || ![response isKindOfClass:[NSHTTPURLResponse class]]
+                || [(NSHTTPURLResponse *) response statusCode] != 200)
+        {
+            completionHandler(nil, error ?: [NSError errorWithDomain:@"me.aironik.Tasks.TwitterTask.NetworkError" code:kATTNetworkManagerErrorCode userInfo:@{}]);
+        } else {
+            completionHandler(data, nil);
+        }
+    }];
+    [task resume];
+}
 
 @end
