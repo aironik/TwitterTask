@@ -106,9 +106,13 @@
 }
 
 - (NSString *)loadAccessToken {
+#ifdef TWITTER_ACCESS_TOKEN
+    return TWITTER_ACCESS_TOKEN
+#else // TWITTER_ACCESS_TOKEN
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"access_token" ofType:@"txt"];
     NSString *fileContent = [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:nil];;
     return [fileContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+#endif // TWITTER_ACCESS_TOKEN
 }
 
 - (NSString *)loadDataPath {

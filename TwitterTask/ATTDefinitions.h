@@ -9,6 +9,8 @@
 #ifndef ATTDefinitions_h
 #define ATTDefinitions_h
 
+//#define TWITTER_ACCESS_TOKEN @"bearer AAA_TOKEN_HERE"
+
 #if DEBUG
     #define HAVE_DEBUG_REVEAL_FEATURE 1
 #else // DEBUG
